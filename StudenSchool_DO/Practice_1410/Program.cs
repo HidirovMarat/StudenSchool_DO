@@ -1,21 +1,17 @@
-﻿namespace Practice_1410
+﻿using System.Net;
+
+namespace Practice_1410
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
-        }
+            using (WebClient client = new WebClient()) // WebClient class inherits IDisposable
+            {
+                client.DownloadFile("https://www.youtube.com/", @"D:\Download\sourse\repous\ITDVN\C# essential\StudenSchool_DO\StudenSchool_DO\HW2\Data\SaveWeb_Site.html");
 
-        public static string FooBar(int num)
-        {
-            if (num % 3 == 0 && num % 5 == 0)
-                return "FooBar";
-            if (num % 3 == 0)
-                return "Foo";
-            if (num % 5 == 0)
-                return "Bar";
-            return "";
+               // Console.WriteLine(htmlCode);
+            }
         }
     }
 }
