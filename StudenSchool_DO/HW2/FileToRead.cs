@@ -1,6 +1,4 @@
 ﻿using System.Runtime.InteropServices;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HW2
 {

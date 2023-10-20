@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HW2
 {
@@ -15,6 +9,7 @@ namespace HW2
         private const string MessagesOperation = "Введите url страницы: ";
         private const string PathWindows = @"..\..\..\Data\WebsiteSave.html";
         private const string PathOther = @"../../../Data/WebsiteSave.html";
+
         private string _url = "";
 
         public string? Url { get; set; }

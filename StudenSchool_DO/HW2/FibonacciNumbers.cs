@@ -1,6 +1,4 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace HW2
+﻿namespace HW2
 {
     internal class FibonacciNumbers : IInformation
     {
