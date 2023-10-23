@@ -2,7 +2,7 @@
 {
     internal class Menu
     {
-        private const string UnderMenuMessages = "1. Остаться (выполнить задачу снова) \n2. Вернуться в главное меню";
+        private const string OptionalRerunMessage = "1. Остаться (выполнить задачу снова) \n2. Вернуться в главное меню";
 
         private IInformation[] _information;
 
@@ -25,10 +25,10 @@
 
         private void PrintMainMenu()
         {
-            DesignMenu.WriteTextMenu("0. Выход");
+            DesignedMenu.WriteTextMenu("0. Выход");
             for (int i = 0; i < _information.Length; i++)
             {
-                DesignMenu.WriteTextMenu($"{i + 1}. {_information[i].GetInformation()}");
+                DesignedMenu.WriteTextMenu($"{i + 1}. {_information[i].GetInformation()}");
             }
         }
 
@@ -37,7 +37,7 @@
             int answer;
             while (!TryConvert(Console.ReadLine(), out answer))
             {
-                DesignMenu.WriteServiceMessages("Введите правильно. Повторите");
+                DesignedMenu.WriteServiceMessages("Введите правильно. Повторите");
             }
 
             return answer;
@@ -65,7 +65,7 @@
 
         private bool DoYouWantToRepeat()
         {
-            DesignMenu.WriteTextMenu(UnderMenuMessages);
+            DesignedMenu.WriteTextMenu(OptionalRerunMessage);
             while (true)
             {
                 string? answer = Console.ReadLine();
@@ -73,7 +73,7 @@
                     return true;
                 if (answer == "2")
                     return false;
-                DesignMenu.WriteServiceMessages("Такого нет числа. Повторите");
+                DesignedMenu.WriteServiceMessages("Такого нет числа. Повторите");
             }
         }
     }

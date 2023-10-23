@@ -21,7 +21,7 @@ namespace HW2
 
         public void Operation()
         {
-            DesignMenu.WriteTextMenu(MessagesOperation);
+            DesignedMenu.WriteTextMenu(MessagesOperation);
             string path = PathOther;
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 path = PathWindows;
@@ -31,7 +31,6 @@ namespace HW2
 
             while (true)
             {
-                bool isGood = true;
                 _url = Console.ReadLine();
                 using WebClient client = new();
                 try
@@ -40,14 +39,10 @@ namespace HW2
                 }
                 catch (Exception ex)
                 {
-                    isGood = false;
                     Console.WriteLine("Введите еще раз url");
+                    continue;
                 }
-                if (isGood)
-                    break;
             }
         }
-
-
     }
 }

@@ -5,5 +5,4 @@
         string GetInformation();
         void Operation();
     }
-
 }

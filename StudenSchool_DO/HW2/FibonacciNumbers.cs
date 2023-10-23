@@ -2,40 +2,37 @@
 {
     internal class FibonacciNumbers : IInformation
     {
-        private const string Information = "Вывод числа Фибоначчи";
+        private const string InformationMessage = "Вывод числа Фибоначчи";
         private const string MessagesOperation = "Введите порядковый номер числа Фибоначчи:";
-
-        public FibonacciNumbers()
-        {
-        }
 
         public string GetInformation()
         {
-            return Information;
+            return InformationMessage;
         }
 
-        public uint GetFibonacciNumbers(uint ordinalNumberOfNumber)
+        public uint GetFibonacciNumbers(uint ordinalNumber)
         {
             uint firstFibonacci = 1;
             uint secondFibonacci = 1;
-            if (ordinalNumberOfNumber == 1)
+            if (ordinalNumber == 1)
+            {
                 return firstFibonacci;
+            }
 
-            if (ordinalNumberOfNumber == 2)
+            if (ordinalNumber == 2)
+            {
                 return secondFibonacci;
+            }
 
             uint resultFibonacci = 0;
-            for (uint i = 3; i < ordinalNumberOfNumber + 1; i++)
+            for (uint i = 3; i < ordinalNumber + 1; i++)
             {
-                try
+                if (uint.MaxValue - firstFibonacci < secondFibonacci)
                 {
-                    resultFibonacci = checked(firstFibonacci + secondFibonacci);
-                }
-                catch(OverflowException overEx)
-                {
-                    throw overEx;
+                    throw new Exception("Выход за uint.MaxValue");
                 }
 
+                resultFibonacci = firstFibonacci + secondFibonacci;
                 (firstFibonacci, secondFibonacci) = (secondFibonacci, resultFibonacci);
             }
 
@@ -44,9 +41,9 @@
 
         public void Operation()
         {
-            DesignMenu.WriteTextMenu(MessagesOperation);
+            DesignedMenu.WriteTextMenu(MessagesOperation);
             uint ordinalNumberOfNumber = uint.Parse(Console.ReadLine());
-            DesignMenu.WriteTextMenu(GetFibonacciNumbers(ordinalNumberOfNumber).ToString());
+            DesignedMenu.WriteTextMenu(GetFibonacciNumbers(ordinalNumberOfNumber).ToString());
         }
     }
 }
