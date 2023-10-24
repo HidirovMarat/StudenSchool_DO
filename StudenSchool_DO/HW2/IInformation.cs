@@ -1,8 +1,8 @@
-﻿namespace HW2
+﻿namespace HW2;
+
+internal interface IInformation
 {
-    internal interface IInformation
-    {
-        string GetInformation();
-        void Operation();
-    }
+    string GetInformation();
+
+    void Operation();
 }

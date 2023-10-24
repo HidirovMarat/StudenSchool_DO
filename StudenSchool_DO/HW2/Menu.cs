@@ -1,80 +1,74 @@
-﻿namespace HW2
+﻿namespace HW2;
+
+internal class Menu
 {
-    internal class Menu
+    private const string OPTIONAL_RERUN_MESSAGE = "1. Остаться (выполнить задачу снова) \n2. Вернуться в главное меню";
+    private const int NUMBER_RUN_AGAIN = 1;
+    private const int NUMBER_GO_BACK_TO_MAIN_MENU = 2;
+    private const int NUMBER_EXIT = 0;
+
+    private IInformation[] _information;
+
+    public Menu(IInformation[] information)
     {
-        private const string OptionalRerunMessage = "1. Остаться (выполнить задачу снова) \n2. Вернуться в главное меню";
+        _information = information;
+    }
 
-        private IInformation[] _information;
-
-        public Menu(IInformation[] information)
+    public void MakeMain()
+    {
+        while(true)
         {
-            _information = information;
-        }
+            PrintMainMenu();
 
-        public void MakeMain()
-        {
-            while(true)
+            int numberItem = WorkWithUser.GetNumberFromUser(choiceNumber => (0 <= choiceNumber) && (choiceNumber < _information.Length + 1));
+
+            if (numberItem == NUMBER_EXIT)
             {
-                PrintMainMenu();
-                int numberItem = GetChoiceNumber();
-                if (numberItem == 0)
-                    break;
-                SelectingMenuItem(numberItem - 1);
-            }
-        }
-
-        private void PrintMainMenu()
-        {
-            DesignedMenu.WriteTextMenu("0. Выход");
-            for (int i = 0; i < _information.Length; i++)
-            {
-                DesignedMenu.WriteTextMenu($"{i + 1}. {_information[i].GetInformation()}");
-            }
-        }
-
-        private int GetChoiceNumber()
-        {
-            int answer;
-            while (!TryConvert(Console.ReadLine(), out answer))
-            {
-                DesignedMenu.WriteServiceMessages("Введите правильно. Повторите");
+                break;
             }
 
-            return answer;
+            SelectingMenuItem(numberItem - 1);
         }
+    }
 
-        private void SelectingMenuItem(int numberItem)
+    private void PrintMainMenu()
+    {
+        DesignedMenu.WriteTextMenu("0. Выход");
+
+        for (int i = 0; i < _information.Length; i++)
         {
-            while(true)
+            DesignedMenu.WriteTextMenu($"{i + 1}. {_information[i].GetInformation()}");
+        }
+    }
+
+    private void SelectingMenuItem(int numberItem)
+    {
+        do
+        {
+            _information[numberItem].Operation();
+        } while (Repeat());
+    }
+
+    private bool Repeat()
+    {
+        DesignedMenu.WriteTextMenu(OPTIONAL_RERUN_MESSAGE);
+
+        CheckingCondition isCorrect = (int value) =>
+        {
+            if (value == NUMBER_RUN_AGAIN || value == NUMBER_GO_BACK_TO_MAIN_MENU)
             {
-                _information[numberItem].Operation();
-                if(!DoYouWantToRepeat())
-                    break;
-            }
-        }
-
-        private bool TryConvert(string answerLine, out int answer)
-        {
-            if (int.TryParse(answerLine, out answer) && IsValid(answer))
                 return true;
+            }
 
             return false;
-        }
+        };
 
-        private bool IsValid(int choiceNumber) => (0 <= choiceNumber) && (choiceNumber < _information.Length + 1);
-
-        private bool DoYouWantToRepeat()
+        int answer = WorkWithUser.GetNumberFromUser(isCorrect);
+        if (answer == NUMBER_RUN_AGAIN)
         {
-            DesignedMenu.WriteTextMenu(OptionalRerunMessage);
-            while (true)
-            {
-                string? answer = Console.ReadLine();
-                if (answer == "1")
-                    return true;
-                if (answer == "2")
-                    return false;
-                DesignedMenu.WriteServiceMessages("Такого нет числа. Повторите");
-            }
+            return true;
         }
+
+        return false;
     }
 }

@@ -1,70 +1,53 @@
-﻿using System.Runtime.InteropServices;
+﻿namespace HW2;
 
-namespace HW2
+internal class FileReader : IInformation
 {
-    internal class FileReader : IInformation
+    private const string InformationMessage = "Чтение";
+    private const string MessagesOperation = "Введите сколько строк хотите получить: ";
+
+    public string GetInformation()
     {
-        private const string InformationMessage = "Чтение";
-        private const string MessagesOperation = "Введите сколько строк хотите получить: ";
+        return InformationMessage;
+    }
 
-        public string GetInformation()
+    private string[] GetLinesFromFile(int numberOfLines)
+    {
+        string path = WorkWithUser.GetPath();
+
+        if (!File.Exists(path))
         {
-            return InformationMessage;
+           throw new FileNotFoundException();
         }
 
-        private string[] GetSpecifiedNumberOfLinesOfTextFromFile(int specifiedNumber)
+        string[] linesOfText = new string[numberOfLines];
+
+        int i = 0;
+        foreach (string line in File.ReadLines(path))
         {
-            string path = GetPath();
-            if (!File.Exists(path))
+            if (i >= numberOfLines)
             {
-               throw new FileNotFoundException();
+                break;
             }
 
-            string[] linesOfText = new string[specifiedNumber];
-            int i = 0;
-            foreach (string line in File.ReadLines(path))
-            {
-                if (i < specifiedNumber)
-                linesOfText[i] = line;
-                i++;
-            }
+            linesOfText[i] = line;
 
-            return linesOfText;
+            i++;
         }
 
-        private string GetPath()
+        return linesOfText;
+    }
+
+    public void Operation()
+    {
+        DesignedMenu.WriteTextMenu(MessagesOperation);
+
+        int numberOfLines = WorkWithUser.GetNumberFromUser(x => x > 0);
+
+        string[] linesFromFile = GetLinesFromFile(numberOfLines);
+
+        foreach (var line in linesFromFile)
         {
-            string PathWindows = @"..\..\..\Data\FileToRead.txt";
-            string PathOther = @"../../../Data/FileToRead.txt";
-
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                return PathWindows;
-            }
-
-            return PathOther;
-        }
-
-        public void Operation()
-        {
-            DesignedMenu.WriteTextMenu(MessagesOperation);
-            int specifiedNumber = GetSpecifiedNumber();
-            string[] specifiedNumberOfLinesOfText = GetSpecifiedNumberOfLinesOfTextFromFile(specifiedNumber);
-            foreach (var line in specifiedNumberOfLinesOfText)
-            {
-                DesignedMenu.WriteEverythingElse(line);
-            }
-        }
-
-        public int GetSpecifiedNumber()
-        {
-            int specifiedNumber;
-            while (int.TryParse(Console.ReadLine(), out specifiedNumber) && specifiedNumber < 1)
-            {
-                DesignedMenu.WriteServiceMessages("Неправильный ввод. Повторите");
-            }
-
-            return specifiedNumber;
+            DesignedMenu.WriteDefaultConsole(line);
         }
     }
 }

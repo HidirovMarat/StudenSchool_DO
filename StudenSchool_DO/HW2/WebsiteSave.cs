@@ -1,48 +1,45 @@
 ﻿using System.Net;
-using System.Runtime.InteropServices;
 
-namespace HW2
+namespace HW2;
+
+internal class WebsiteSave : IInformation
 {
-    internal class WebsiteSave : IInformation
+    private const string Information = "Запись";
+    private const string MessagesOperation = "Введите url страницы: ";
+
+    public string GetInformation()
     {
-        private const string Information = "Запись";
-        private const string MessagesOperation = "Введите url страницы: ";
-        private const string PathWindows = @"..\..\..\Data\WebsiteSave.html";
-        private const string PathOther = @"../../../Data/WebsiteSave.html";
+        return Information;
+    }
 
-        private string _url = "";
+    public void Operation()
+    {
+        string path = WorkWithUser.GetPath();
 
-        public string? Url { get; set; }
+        DesignedMenu.WriteTextMenu(MessagesOperation);
 
-        public string GetInformation()
+        if (!File.Exists(path))
         {
-            return Information;
+            throw new FileNotFoundException("Нет файла");
         }
 
-        public void Operation()
+        while (true)
         {
-            DesignedMenu.WriteTextMenu(MessagesOperation);
-            string path = PathOther;
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                path = PathWindows;
+            string _url = Console.ReadLine() ?? "";
 
-            if (!File.Exists(path))
-                throw new Exception();
+            using WebClient client = new();
 
-            while (true)
+            try
             {
-                _url = Console.ReadLine();
-                using WebClient client = new();
-                try
-                {
-                    client.DownloadFile(_url, path);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Введите еще раз url");
-                    continue;
-                }
+                client.DownloadFile(_url, path);
             }
+            catch
+            {
+                DesignedMenu.WriteServiceMessages("Ошибка. Введите еще раз url");
+                continue;
+            }
+
+            break;
         }
     }
 }
