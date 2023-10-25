@@ -26,7 +26,7 @@ internal static class WorkWithUser
         return false;
     }
 
-    public static string GetPath()
+    public static string GetPathOfFile()
     {
         DesignedMenu.WriteTextMenu("Введите адрес файла");
 

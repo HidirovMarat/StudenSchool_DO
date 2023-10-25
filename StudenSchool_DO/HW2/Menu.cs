@@ -45,7 +45,7 @@ internal class Menu
     {
         do
         {
-            _information[numberItem].Operation();
+            _information[numberItem].Operate();
         } while (Repeat());
     }
 
@@ -53,22 +53,8 @@ internal class Menu
     {
         DesignedMenu.WriteTextMenu(OPTIONAL_RERUN_MESSAGE);
 
-        CheckingCondition isCorrect = (int value) =>
-        {
-            if (value == NUMBER_RUN_AGAIN || value == NUMBER_GO_BACK_TO_MAIN_MENU)
-            {
-                return true;
-            }
+        int answer = WorkWithUser.GetNumberFromUser(value => value == NUMBER_RUN_AGAIN || value == NUMBER_GO_BACK_TO_MAIN_MENU);
 
-            return false;
-        };
-
-        int answer = WorkWithUser.GetNumberFromUser(isCorrect);
-        if (answer == NUMBER_RUN_AGAIN)
-        {
-            return true;
-        }
-
-        return false;
+        return answer == NUMBER_RUN_AGAIN;
     }
 }

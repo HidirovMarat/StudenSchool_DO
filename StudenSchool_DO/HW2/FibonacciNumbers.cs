@@ -2,17 +2,17 @@
 
 internal class FibonacciNumbers : IInformation
 {
-    private const string InformationMessage = "Вывод числа Фибоначчи";
-    private const string MessagesOperation = "Введите порядковый номер числа Фибоначчи:";
+    private const string INFORMATION_MESSAGE = "Вывод числа Фибоначчи";
+    private const string MESSAGES_OPERATION = "Введите порядковый номер числа Фибоначчи:";
 
     public string GetInformation()
     {
-        return InformationMessage;
+        return INFORMATION_MESSAGE;
     }
 
-    public void Operation()
+    public void Operate()
     {
-        DesignedMenu.WriteTextMenu(MessagesOperation);
+        DesignedMenu.WriteTextMenu(MESSAGES_OPERATION);
 
         int ordinalNumber = WorkWithUser.GetNumberFromUser(x => x > 0);
 

@@ -12,9 +12,9 @@ internal class WebsiteSave : IInformation
         return Information;
     }
 
-    public void Operation()
+    public void Operate()
     {
-        string path = WorkWithUser.GetPath();
+        string path = WorkWithUser.GetPathOfFile();
 
         DesignedMenu.WriteTextMenu(MessagesOperation);
 

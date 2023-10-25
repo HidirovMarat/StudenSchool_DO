@@ -2,44 +2,17 @@
 
 internal class FileReader : IInformation
 {
-    private const string InformationMessage = "Чтение";
-    private const string MessagesOperation = "Введите сколько строк хотите получить: ";
+    private const string INFORMATION_MESSAGE = "Чтение";
+    private const string MESSAGES_OPERATION = "Введите сколько строк хотите получить: ";
 
     public string GetInformation()
     {
-        return InformationMessage;
+        return INFORMATION_MESSAGE;
     }
 
-    private string[] GetLinesFromFile(int numberOfLines)
+    public void Operate()
     {
-        string path = WorkWithUser.GetPath();
-
-        if (!File.Exists(path))
-        {
-           throw new FileNotFoundException();
-        }
-
-        string[] linesOfText = new string[numberOfLines];
-
-        int i = 0;
-        foreach (string line in File.ReadLines(path))
-        {
-            if (i >= numberOfLines)
-            {
-                break;
-            }
-
-            linesOfText[i] = line;
-
-            i++;
-        }
-
-        return linesOfText;
-    }
-
-    public void Operation()
-    {
-        DesignedMenu.WriteTextMenu(MessagesOperation);
+        DesignedMenu.WriteTextMenu(MESSAGES_OPERATION);
 
         int numberOfLines = WorkWithUser.GetNumberFromUser(x => x > 0);
 
@@ -49,5 +22,32 @@ internal class FileReader : IInformation
         {
             DesignedMenu.WriteDefaultConsole(line);
         }
+    }
+
+    private string[] GetLinesFromFile(int numberOfLines)
+    {
+        string path = WorkWithUser.GetPathOfFile();
+
+        if (!File.Exists(path))
+        {
+            throw new FileNotFoundException("No file to read");
+        }
+
+        string[] linesFromText = new string[numberOfLines];
+
+        int i = 0;
+        foreach (string line in File.ReadLines(path))
+        {
+            if (i >= numberOfLines)
+            {
+                break;
+            }
+
+            linesFromText[i] = line;
+
+            i++;
+        }
+
+        return linesFromText;
     }
 }

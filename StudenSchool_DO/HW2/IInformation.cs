@@ -4,5 +4,5 @@ internal interface IInformation
 {
     string GetInformation();
 
-    void Operation();
+    void Operate();
 }
