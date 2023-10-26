@@ -46,7 +46,8 @@ internal class Menu
         do
         {
             _information[numberItem].Operate();
-        } while (Repeat());
+        } 
+        while (Repeat());
     }
 
     private bool Repeat()

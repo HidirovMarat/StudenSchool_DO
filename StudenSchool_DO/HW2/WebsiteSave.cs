@@ -32,14 +32,13 @@ internal class WebsiteSave : IInformation
             try
             {
                 client.DownloadFile(_url, path);
+
+                break;
             }
             catch
             {
                 DesignedMenu.WriteServiceMessages("Ошибка. Введите еще раз url");
-                continue;
             }
-
-            break;
         }
     }
 }

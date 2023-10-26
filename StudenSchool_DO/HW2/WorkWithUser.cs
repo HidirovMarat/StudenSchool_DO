@@ -8,7 +8,7 @@ internal static class WorkWithUser
     {
         int numberOfLines;
 
-        while (!IsValid(out numberOfLines, IsCondition))
+        while (!IsValid(IsCondition, out numberOfLines))
         {
             DesignedMenu.WriteServiceMessages("Неправильный ввод. Повторите");
         }
@@ -16,15 +16,7 @@ internal static class WorkWithUser
         return numberOfLines;
     }
 
-    private static bool IsValid(out int value, CheckingCondition IsCondition)
-    {
-        if (int.TryParse(Console.ReadLine(), out value) && IsCondition(value))
-        {
-            return true;
-        }
-
-        return false;
-    }
+    private static bool IsValid(CheckingCondition IsCondition, out int value) => (int.TryParse(Console.ReadLine(), out value) && IsCondition(value));
 
     public static string GetPathOfFile()
     {

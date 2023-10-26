@@ -39,7 +39,7 @@ internal class FibonacciNumbers : IInformation
         {
             if (int.MaxValue - firstFibonacci < secondFibonacci)
             {
-                throw new Exception("Выход за int.MaxValue");
+                throw new OverflowException("Выход за int.MaxValue");
             }
 
             (firstFibonacci, secondFibonacci) = (secondFibonacci, firstFibonacci + secondFibonacci);

@@ -16,7 +16,7 @@ internal class FileReader : IInformation
 
         int numberOfLines = WorkWithUser.GetNumberFromUser(x => x > 0);
 
-        string[] linesFromFile = GetLinesFromFile(numberOfLines);
+        var linesFromFile = GetLinesFromFile(numberOfLines);
 
         foreach (var line in linesFromFile)
         {
@@ -24,7 +24,7 @@ internal class FileReader : IInformation
         }
     }
 
-    private string[] GetLinesFromFile(int numberOfLines)
+    private IEnumerable<string> GetLinesFromFile(int numberOfLines)
     {
         string path = WorkWithUser.GetPathOfFile();
 
@@ -33,21 +33,15 @@ internal class FileReader : IInformation
             throw new FileNotFoundException("No file to read");
         }
 
-        string[] linesFromText = new string[numberOfLines];
-
         int i = 0;
         foreach (string line in File.ReadLines(path))
         {
-            if (i >= numberOfLines)
+            if (i++ >= numberOfLines)
             {
-                break;
+                yield break;
             }
 
-            linesFromText[i] = line;
-
-            i++;
+            yield return line;
         }
-
-        return linesFromText;
     }
 }

@@ -18,7 +18,9 @@ internal static class DesignedMenu
     private static void WriteWithSelectedColor(ConsoleColor selectedColor, string text)
     {
         Console.ForegroundColor = selectedColor;
+
         Console.WriteLine(text);
+
         Console.ResetColor();
     }
 }
