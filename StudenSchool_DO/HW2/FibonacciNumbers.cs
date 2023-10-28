@@ -25,14 +25,9 @@ internal class FibonacciNumbers : IInformation
 
         int secondFibonacci = 1;
 
-        if (ordinalNumber == 1)
+        if (ordinalNumber == 1 || ordinalNumber == 2)
         {
             return firstFibonacci;
-        }
-
-        if (ordinalNumber == 2)
-        {
-            return secondFibonacci;
         }
 
         for (int i = 3; i < ordinalNumber + 1; i++)
