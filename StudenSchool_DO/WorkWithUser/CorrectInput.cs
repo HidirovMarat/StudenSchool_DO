@@ -2,7 +2,7 @@
 
 public delegate bool CheckingCondition(int value);
 
-internal static class WorkWithUser
+public static class CorrectInput
 {
     public static int GetNumberFromUser(CheckingCondition IsCondition)
     {
@@ -32,5 +32,17 @@ internal static class WorkWithUser
         }
 
         return path;
+    }
+
+    public static Guid GetGuid()
+    {
+        Guid guid;
+
+        while (!Guid.TryParse(Console.ReadLine(), out guid))
+        {
+            DesignedMenu.WriteServiceMessages("Неправильный ввод. Повторите");
+        }
+
+        return guid;
     }
 }

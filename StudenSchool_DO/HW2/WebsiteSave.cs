@@ -2,7 +2,7 @@
 
 namespace HW2;
 
-internal class WebsiteSave : IInformation
+public class WebsiteSave : IInformation
 {
     private const string Information = "Запись";
     private const string MessagesOperation = "Введите url страницы: ";
@@ -14,7 +14,7 @@ internal class WebsiteSave : IInformation
 
     public void Operate()
     {
-        string path = WorkWithUser.GetPathOfFile();
+        string path = CorrectInput.GetPathOfFile();
 
         DesignedMenu.WriteTextMenu(MessagesOperation);
 

@@ -20,7 +20,7 @@ internal class Menu
         {
             PrintMainMenu();
 
-            int numberItem = WorkWithUser.GetNumberFromUser(choiceNumber => (0 <= choiceNumber) && (choiceNumber < _information.Length + 1));
+            int numberItem = CorrectInput.GetNumberFromUser(choiceNumber => (0 <= choiceNumber) && (choiceNumber < _information.Length + 1));
 
             if (numberItem == NUMBER_EXIT)
             {
@@ -54,7 +54,7 @@ internal class Menu
     {
         DesignedMenu.WriteTextMenu(OPTIONAL_RERUN_MESSAGE);
 
-        int answer = WorkWithUser.GetNumberFromUser(value => value == NUMBER_RUN_AGAIN || value == NUMBER_GO_BACK_TO_MAIN_MENU);
+        int answer = CorrectInput.GetNumberFromUser(value => value == NUMBER_RUN_AGAIN || value == NUMBER_GO_BACK_TO_MAIN_MENU);
 
         return answer == NUMBER_RUN_AGAIN;
     }

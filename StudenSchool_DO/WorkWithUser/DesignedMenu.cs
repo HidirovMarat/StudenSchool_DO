@@ -1,6 +1,6 @@
 ﻿namespace HW2;
 
-internal static class DesignedMenu
+public static class DesignedMenu
 {
     private const ConsoleColor TextMenuColor = ConsoleColor.Yellow;
     private const ConsoleColor ErrorMessagesColor = ConsoleColor.Red;

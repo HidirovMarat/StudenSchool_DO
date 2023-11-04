@@ -14,7 +14,7 @@ internal class FileReader : IInformation
     {
         DesignedMenu.WriteTextMenu(MESSAGES_OPERATION);
 
-        int numberOfLines = WorkWithUser.GetNumberFromUser(x => x > 0);
+        int numberOfLines = CorrectInput.GetNumberFromUser(x => x > 0);
 
         var linesFromFile = GetLinesFromFile(numberOfLines);
 
@@ -26,7 +26,7 @@ internal class FileReader : IInformation
 
     private IEnumerable<string> GetLinesFromFile(int numberOfLines)
     {
-        string path = WorkWithUser.GetPathOfFile();
+        string path = CorrectInput.GetPathOfFile();
 
         if (!File.Exists(path))
         {
