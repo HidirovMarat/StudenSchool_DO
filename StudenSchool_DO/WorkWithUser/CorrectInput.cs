@@ -1,4 +1,4 @@
-﻿namespace HW2;
+﻿namespace WorkWithUser;
 
 public delegate bool CheckingCondition(int value);
 
@@ -34,11 +34,23 @@ public static class CorrectInput
         return path;
     }
 
-    public static Guid GetGuid()
+    public static Guid GetGuidFromUser()
     {
         Guid guid;
 
         while (!Guid.TryParse(Console.ReadLine(), out guid))
+        {
+            DesignedMenu.WriteServiceMessages("Неправильный ввод. Повторите");
+        }
+
+        return guid;
+    }
+
+    public static DateTime GetDateTimeFromUser()
+    {
+         DateTime guid;
+
+        while (!DateTime.TryParse(Console.ReadLine(), out guid))
         {
             DesignedMenu.WriteServiceMessages("Неправильный ввод. Повторите");
         }

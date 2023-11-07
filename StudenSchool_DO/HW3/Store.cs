@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 
-namespace HW3;
+namespace Provider3;
 
 public abstract class Store
 {

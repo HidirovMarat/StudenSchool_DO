@@ -1,8 +1,9 @@
-﻿namespace HW3;
+﻿namespace Provider3;
 
 public interface IRepository
 {
     public string NameTable { get;}
+
     public string GetColumns();
 
     public string Gets();

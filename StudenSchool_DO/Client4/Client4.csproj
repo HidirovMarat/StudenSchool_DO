@@ -8,11 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HW3\HW3.csproj" />
-    <ProjectReference Include="..\HW3\Provider.csproj" />
+    <ProjectReference Include="..\DbModels\DbModels.csproj" />
     <ProjectReference Include="..\Menu\Menu.csproj" />
-    <ProjectReference Include="..\Provider\Provider.csproj" />
-    <ProjectReference Include="..\WorkWithUser\WorkWithUser.csproj" />
+    <ProjectReference Include="..\Provider\Provider4.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,7 @@
-﻿namespace HW2;
+﻿using Menu;
+using WorkWithUser;
+
+namespace HW2;
 
 internal class FibonacciNumbers : IInformation
 {

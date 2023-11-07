@@ -1,8 +1,7 @@
-﻿using HW2;
+﻿using WorkWithUser;
 using Microsoft.Data.SqlClient;
-using System.Collections;
 
-namespace HW3;
+namespace Provider3;
 
 public class Students : Store, IRepository
 {
@@ -107,7 +106,7 @@ public class Students : Store, IRepository
     {
         DesignedMenu.WriteServiceMessages("studentsID ");
 
-        Guid studentID = CorrectInput.GetGuid();
+        Guid studentID = CorrectInput.GetGuidFromUser();
 
         return GetFromDB(studentID);
     }
@@ -116,7 +115,7 @@ public class Students : Store, IRepository
     {
         DesignedMenu.WriteServiceMessages("studentsID ");
 
-        Guid studentID = CorrectInput.GetGuid();
+        Guid studentID = CorrectInput.GetGuidFromUser();
 
         DesignedMenu.WriteServiceMessages("name ");
 
@@ -133,7 +132,7 @@ public class Students : Store, IRepository
     {
         DesignedMenu.WriteServiceMessages("studentsID ");
 
-        Guid studentID = CorrectInput.GetGuid();
+        Guid studentID = CorrectInput.GetGuidFromUser();
 
         DesignedMenu.WriteServiceMessages("name ");
 
@@ -150,7 +149,7 @@ public class Students : Store, IRepository
     {
         DesignedMenu.WriteServiceMessages("studentsID ");
 
-        Guid studentID = CorrectInput.GetGuid();
+        Guid studentID = CorrectInput.GetGuidFromUser();
 
         DeleteFromDB(studentID);
     }

@@ -1,7 +1,7 @@
 ﻿using Menu;
 using WorkWithUser;
 
-namespace HW2;
+namespace Client;
 
 internal class Program
 {
@@ -11,7 +11,7 @@ internal class Program
 
         try
         {
-            IInformation[] information = { new FibonacciNumbers(), new FileReader(), new WebsiteSave()};
+            IInformation[] information = {new ADO_CRUD()};
 
             Menu.Menu menu = new(information);
 

@@ -1,7 +1,7 @@
-﻿using HW2;
+﻿using WorkWithUser;
 using Microsoft.Data.SqlClient;
 
-namespace HW3;
+namespace Provider3;
 
 public class Courses : Store, IRepository
 {
@@ -68,7 +68,7 @@ public class Courses : Store, IRepository
         var formatedSQL = string.Format(CREATE_SQL, courseID.ToString(), title);
 
         var sqlCommand = new SqlCommand(formatedSQL, sqlConnection);
-        
+
         sqlConnection.Open();
 
         sqlCommand.ExecuteNonQuery();
@@ -79,11 +79,11 @@ public class Courses : Store, IRepository
         using var sqlConnection = new SqlConnection(ConnectionString);
 
         var formatedSQL = string.Format(EDIT_SQL, courseID, title);
-        
+
         var sqlCommand = new SqlCommand(formatedSQL, sqlConnection);
 
         sqlConnection.Open();
-        
+
         sqlCommand.ExecuteNonQuery();
     }
 
@@ -92,11 +92,11 @@ public class Courses : Store, IRepository
         using var sqlConnection = new SqlConnection(ConnectionString);
 
         var formatedSQL = string.Format(DELETE_SQL, courseID);
-        
+
         var sqlCommand = new SqlCommand(formatedSQL, sqlConnection);
 
         sqlConnection.Open();
-        
+
         sqlCommand.ExecuteNonQuery();
     }
 
@@ -114,7 +114,7 @@ public class Courses : Store, IRepository
     {
         DesignedMenu.WriteServiceMessages("coursesID ");
 
-        Guid coursesID = CorrectInput.GetGuid();
+        Guid coursesID = CorrectInput.GetGuidFromUser();
 
         return GetFromDB(coursesID);
     }
@@ -123,7 +123,7 @@ public class Courses : Store, IRepository
     {
         DesignedMenu.WriteServiceMessages("coursesID ");
 
-        Guid coursesID = CorrectInput.GetGuid();
+        Guid coursesID = CorrectInput.GetGuidFromUser();
 
         DesignedMenu.WriteServiceMessages("title ");
 
@@ -136,10 +136,10 @@ public class Courses : Store, IRepository
     {
         DesignedMenu.WriteServiceMessages("coursesID ");
 
-        Guid coursesID = CorrectInput.GetGuid();
+        Guid coursesID = CorrectInput.GetGuidFromUser();
 
         DesignedMenu.WriteServiceMessages("title ");
-        
+
         string title = Console.ReadLine();
 
         CreateFromDB(coursesID, title);
@@ -149,7 +149,7 @@ public class Courses : Store, IRepository
     {
         DesignedMenu.WriteServiceMessages("coursesID ");
 
-        Guid coursesID = CorrectInput.GetGuid();
+        Guid coursesID = CorrectInput.GetGuidFromUser();
 
         DeleteFromDB(coursesID);
     }

@@ -1,7 +1,9 @@
-﻿using Menu;
+﻿using DbModels;
+using Menu;
+using Provider;
 using WorkWithUser;
 
-namespace HW2;
+namespace Client4;
 
 internal class Program
 {
@@ -9,9 +11,16 @@ internal class Program
     {
         Console.WriteLine("Hello, World!");
 
+        CourseRepository repository = new CourseRepository();
+
+        DbCourse dbCourse = new DbCourse() { Id = Guid.NewGuid(),  Credit = 3, NameCourse = "NameCourse"};
+
+        repository.CreateCourse(dbCourse);
+
+
         try
         {
-            IInformation[] information = { new FibonacciNumbers(), new FileReader(), new WebsiteSave()};
+            IInformation[] information = { new EF_CRUD() };
 
             Menu.Menu menu = new(information);
 

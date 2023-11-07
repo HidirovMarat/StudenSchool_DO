@@ -1,4 +1,6 @@
 ﻿using System.Net;
+using WorkWithUser;
+using Menu;
 
 namespace HW2;
 

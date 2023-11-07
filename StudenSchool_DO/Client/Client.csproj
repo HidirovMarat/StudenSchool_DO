@@ -8,10 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HW3\HW3.csproj" />
-    <ProjectReference Include="..\HW3\Provider.csproj" />
+    <ProjectReference Include="..\HW3\Provider3.csproj" />
     <ProjectReference Include="..\Menu\Menu.csproj" />
-    <ProjectReference Include="..\Provider\Provider.csproj" />
     <ProjectReference Include="..\WorkWithUser\WorkWithUser.csproj" />
   </ItemGroup>
 

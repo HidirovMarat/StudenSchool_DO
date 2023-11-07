@@ -1,4 +1,4 @@
-﻿namespace HW2;
+﻿namespace WorkWithUser;
 
 public static class DesignedMenu
 {
