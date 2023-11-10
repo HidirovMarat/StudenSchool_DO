@@ -3,36 +3,43 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Provider;
 
-public class GradeRepository
+public class GradeRepository : IBaseRepository<DbGrade>
 {
     private readonly UniversityDbContext _dbContext = new();
 
     public string TableName = "Grades";
 
 
-    public List<DbGrade> GetGrade() => _dbContext.Grades.ToList();
+    public IQueryable<DbGrade> Get() => _dbContext.Grades;
 
-    public DbGrade GetGrade(Guid GradeId) =>
+    public DbGrade Get(Guid GradeId) =>
         _dbContext.Grades
         .AsNoTracking()
         .Where(u => u.Id == GradeId)
         .FirstOrDefault()!;
 
-    public void CreateGrade(DbGrade grade)
+    public void Create(DbGrade grade)
     {
         _dbContext.Grades.Add(grade);
 
         _dbContext.SaveChanges();
     }
 
-    public void EditGrade(DbGrade grade)
+    public void Edit(DbGrade grade)
     {
-        _dbContext.Grades.Update(grade);
+        var gradeFromDB = _dbContext.Grades.Where(u => u.Id == grade.Id).FirstOrDefault();
+
+        if (gradeFromDB == null)
+        {
+            return;
+        }
+
+        gradeFromDB.Copy(grade);
 
         _dbContext.SaveChanges();
     }
 
-    public void DeleteGrade(Guid id)
+    public void Delete(Guid id)
     {
         var grade = _dbContext.Grades.FirstOrDefault(u => u.Id == id);
 
@@ -41,5 +48,5 @@ public class GradeRepository
         _dbContext.SaveChanges();
     }
 
-    public bool IsData(Guid id) => _dbContext.Grades.Any(u => u.Id == id);
+    //public bool IsData(Guid id) => _dbContext.Grades.Any(u => u.Id == id);
 }

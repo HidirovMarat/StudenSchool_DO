@@ -1,6 +1,8 @@
-﻿namespace DbModels;
+﻿using static System.Formats.Asn1.AsnWriter;
 
-public class DbStudent
+namespace DbModels;
+
+public class DbStudent : ICopy<DbStudent>
 {
     public Guid Id { get; set; }
 
@@ -17,5 +19,14 @@ public class DbStudent
     public override string ToString()
     {
         return $"{Id} {FirstName} {LastName} {DateOfAdmission} {Faculty}";
+    }
+
+    public void Copy(DbStudent fromStudent)
+    {
+        Id = fromStudent.Id ;
+        FirstName = fromStudent.FirstName ;
+        LastName = fromStudent.LastName ;
+        DateOfAdmission = fromStudent.DateOfAdmission ;
+        Faculty = fromStudent.Faculty ;
     }
 }

@@ -28,34 +28,34 @@ class ADO_CRUD : IInformation
 
         DesignedMenu.WriteTextMenu("1. Gets\n2. Get\n3. Create\n4. Edite\n5. Delete");
 
-        int operationNumberPlusOne = CorrectInput.GetNumberFromUser(x => x >= 1 || x <= 5);
+        int operationNumber = CorrectInput.GetNumberFromUser(x => x >= 1 || x <= 5);
 
-        OperateTable(table, operationNumberPlusOne - 1);
+        OperateTable(table, operationNumber);
     }
 
     private void OperateTable(IRepository table, int operationNumber)
     {
-        if (operationNumber == (int)OperateWithTable.Gets)
+        if (operationNumber == (int)OperationWithDatabase.Gets)
         {
             DesignedMenu.WriteDefaultConsole(table.Gets());
         }
 
-        if (operationNumber == (int)OperateWithTable.Get)
+        if (operationNumber == (int)OperationWithDatabase.Get)
         {
             Console.WriteLine(table.Get());
         }
 
-        if (operationNumber == (int)OperateWithTable.Create)
+        if (operationNumber == (int)OperationWithDatabase.Create)
         {
             table.Create();
         }
 
-        if (operationNumber == (int)OperateWithTable.Edite)
+        if (operationNumber == (int)OperationWithDatabase.Edit)
         {
             table.Edite();
         }
 
-        if (operationNumber == (int)OperateWithTable.Delete)
+        if (operationNumber == (int)OperationWithDatabase.Delete)
         {
             table.Delete();
         }

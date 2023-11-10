@@ -3,35 +3,42 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Provider;
 
-public class TeacherRepository
+public class TeacherRepository : IBaseRepository<DbTeacher>
 {
     private readonly UniversityDbContext _dbContext = new();
 
     public string TableName = "Teachers";
 
-    public List<DbTeacher> GetTeacher() => _dbContext.Teachers.ToList();
+    public IQueryable<DbTeacher> Get() => _dbContext.Teachers;
 
-    public DbTeacher GetTeacher(Guid teacherId) =>
+    public DbTeacher Get(Guid teacherId) =>
         _dbContext.Teachers
         .AsNoTracking()
         .Where(u => u.Id == teacherId)
         .FirstOrDefault()!;
 
-    public void CreateTeacher(DbTeacher teacher)
+    public void Create(DbTeacher teacher)
     {
         _dbContext.Teachers.Add(teacher);
 
         _dbContext.SaveChanges();
     }
 
-    public void EditTeacher(DbTeacher teacher)
+    public void Edit(DbTeacher teacher)
     {
-        _dbContext.Teachers.Update(teacher);
+        var teacherFromDB = _dbContext.Teachers.Where(u => u.Id == teacher.Id).FirstOrDefault();
+
+        if (teacherFromDB == null)
+        {
+            return;
+        }
+
+        teacherFromDB.Copy(teacher);
 
         _dbContext.SaveChanges();
     }
 
-    public void DeleteTeacher(Guid id)
+    public void Delete(Guid id)
     {
         var teacher = _dbContext.Teachers.FirstOrDefault(u  => u.Id == id);
 
@@ -40,5 +47,5 @@ public class TeacherRepository
         _dbContext.SaveChanges();
     }
 
-    public bool IsData(Guid id) => _dbContext.Teachers.Any(u => u.Id == id);
+    //public bool IsData(Guid id) => _dbContext.Teachers.Any(u => u.Id == id);
 }

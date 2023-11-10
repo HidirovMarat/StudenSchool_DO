@@ -1,10 +1,11 @@
 ﻿namespace Client;
 
-enum OperateWithTable
+enum OperationWithDatabase
 {
+    None,
     Gets,
     Get,
     Create,
-    Edite,
+    Edit,
     Delete,
 }

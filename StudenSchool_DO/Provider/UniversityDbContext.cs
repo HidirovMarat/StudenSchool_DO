@@ -14,12 +14,6 @@ public class UniversityDbContext : DbContext
 
     public DbSet<DbTeacher> Teachers { get; set; } = null!;
 
-
-    public UniversityDbContext()
-    {
-        Database.EnsureCreated();
-    }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer(@"Server=localhost\sqlexpress;Database=University;Trusted_Connection=True;Encrypt=False;");

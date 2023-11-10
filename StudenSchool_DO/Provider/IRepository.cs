@@ -2,17 +2,15 @@
 
 namespace Provider;
 
-public interface IRepository
+public interface IBaseRepository<T>
 {
-    public T Get<T>();
+    public T Get(Guid id);
 
-    public T Get<T>(Guid id);
+    public IQueryable<T> Get();
 
-    public void Create<T>(T entity);
+    public void Create(T entity);
 
-    public void Edit<T>(T entity);
+    public void Edit(T entity);
 
     public void Delete(Guid id);
-
-    public bool IsData(Guid id);
 }
