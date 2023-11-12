@@ -1,4 +1,7 @@
-﻿namespace HW2;
+﻿using Menu;
+using WorkWithUser;
+
+namespace Client;
 
 internal class Program
 {
@@ -10,7 +13,7 @@ internal class Program
         {
             IInformation[] information = { new FibonacciNumbers(), new FileReader(), new WebsiteSave() };
 
-            Menu menu = new(information);
+            Menu.Menu menu = new(information);
 
             menu.MakeMain();
         }

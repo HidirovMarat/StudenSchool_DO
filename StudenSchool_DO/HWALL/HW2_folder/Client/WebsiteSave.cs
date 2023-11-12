@@ -1,22 +1,24 @@
-﻿using System.Net;
+﻿using Menu;
+using System.Net;
+using WorkWithUser;
 
-namespace HW2;
+namespace Client;
 
 internal class WebsiteSave : IInformation
 {
-    private const string Information = "Запись";
-    private const string MessagesOperation = "Введите url страницы: ";
+    private const string INFORMATION = "Запись";
+    private const string MESSAGES_OPERATION = "Введите url страницы: ";
 
     public string GetInformation()
     {
-        return Information;
+        return INFORMATION;
     }
 
     public void Operate()
     {
-        string path = WorkWithUser.GetPathOfFile();
+        string path = CorrectInput.GetPathOfFile();
 
-        DesignedMenu.WriteTextMenu(MessagesOperation);
+        DesignedMenu.WriteTextMenu(MESSAGES_OPERATION);
 
         if (!File.Exists(path))
         {

@@ -1,6 +1,8 @@
-﻿namespace HW2;
+﻿using WorkWithUser;
 
-internal class Menu
+namespace Menu;
+
+public class Menu
 {
     private const string OPTIONAL_RERUN_MESSAGE = "1. Остаться (выполнить задачу снова) \n2. Вернуться в главное меню";
     private const int NUMBER_RUN_AGAIN = 1;
@@ -20,7 +22,7 @@ internal class Menu
         {
             PrintMainMenu();
 
-            int numberItem = WorkWithUser.GetNumberFromUser(choiceNumber => (0 <= choiceNumber) && (choiceNumber < _information.Length + 1));
+            int numberItem = CorrectInput.GetNumberFromUser(choiceNumber => (0 <= choiceNumber) && (choiceNumber < _information.Length + 1));
 
             if (numberItem == NUMBER_EXIT)
             {
@@ -46,7 +48,7 @@ internal class Menu
         do
         {
             _information[numberItem].Operate();
-        } 
+        }
         while (Repeat());
     }
 
@@ -54,7 +56,7 @@ internal class Menu
     {
         DesignedMenu.WriteTextMenu(OPTIONAL_RERUN_MESSAGE);
 
-        int answer = WorkWithUser.GetNumberFromUser(value => value == NUMBER_RUN_AGAIN || value == NUMBER_GO_BACK_TO_MAIN_MENU);
+        int answer = CorrectInput.GetNumberFromUser(value => value == NUMBER_RUN_AGAIN || value == NUMBER_GO_BACK_TO_MAIN_MENU);
 
         return answer == NUMBER_RUN_AGAIN;
     }

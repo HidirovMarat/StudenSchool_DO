@@ -1,8 +1,8 @@
-﻿namespace HW2;
+﻿namespace WorkWithUser;
 
 public delegate bool CheckingCondition(int value);
 
-internal static class WorkWithUser
+public static class CorrectInput
 {
     public static int GetNumberFromUser(CheckingCondition IsCondition)
     {
@@ -32,5 +32,29 @@ internal static class WorkWithUser
         }
 
         return path;
+    }
+
+    public static Guid GetGuidFromUser()
+    {
+        Guid guid;
+
+        while (!Guid.TryParse(Console.ReadLine(), out guid))
+        {
+            DesignedMenu.WriteServiceMessages("Неправильный ввод. Повторите");
+        }
+
+        return guid;
+    }
+
+    public static DateTime GetDateTimeFromUser()
+    {
+        DateTime guid;
+
+        while (!DateTime.TryParse(Console.ReadLine(), out guid))
+        {
+            DesignedMenu.WriteServiceMessages("Неправильный ввод. Повторите");
+        }
+
+        return guid;
     }
 }
