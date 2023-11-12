@@ -6,7 +6,7 @@ namespace Provider;
 public class Courses : Store, IRepository
 {
     private const string ID_NAME = "CourseID";
-    private const string GETS_SQL = $"SELECT * FROM {TABLE_NAME}";
+    private const string GET_ALL_SQL = $"SELECT * FROM {TABLE_NAME}";
     private const string GET_SQL = $"SELECT * FROM {TABLE_NAME} WHERE {ID_NAME} = '{{0}}' ";
     private const string CREATE_SQL = $"INSERT INTO {TABLE_NAME} ({ID_NAME}, Title) VALUES ('{{0}}', '{{1}}') ";
     private const string EDIT_SQL = $"UPDATE {TABLE_NAME} SET Title = '{{1}}' WHERE {ID_NAME} = '{{0}}' ";
@@ -16,23 +16,20 @@ public class Courses : Store, IRepository
 
     public string NameTable { get { return TABLE_NAME; } }
 
-    public string GetsFromDB()
+    public string GetAllFromDB()
     {
         var result = string.Empty;
 
         using var sqlConnection = new SqlConnection(ConnectionString);
 
-        var sqlCommand = new SqlCommand(GETS_SQL, sqlConnection);
+        var sqlCommand = new SqlCommand(GET_ALL_SQL, sqlConnection);
 
         sqlConnection.Open();
 
         using var sqlDataReader = sqlCommand.ExecuteReader();
         while (sqlDataReader.Read())
         {
-            result += sqlDataReader["CourseID"];
-            result += " ";
-            result += sqlDataReader["Title"];
-            result += "\n";
+            result = $"{sqlDataReader["CourseID"]} {sqlDataReader["Title"]}\n";
         }
 
         return result;
@@ -52,10 +49,7 @@ public class Courses : Store, IRepository
         using var sqlDataReader = sqlCommand.ExecuteReader();
         while (sqlDataReader.Read())
         {
-            result += sqlDataReader["CourseID"];
-            result += " ";
-            result += sqlDataReader["Title"];
-            result += "\n";
+            result = $"{sqlDataReader["CourseID"]} {sqlDataReader["Title"]}\n";
         }
 
         return result;
@@ -105,9 +99,9 @@ public class Courses : Store, IRepository
         return "Guid CoursesID, string Title";
     }
 
-    public string Gets()
+    public string GetAll()
     {
-        return GetsFromDB();
+        return GetAllFromDB();
     }
 
     public string Get()
@@ -132,7 +126,7 @@ public class Courses : Store, IRepository
         CreateFromDB(coursesID, title);
     }
 
-    public void Edite()
+    public void Edit()
     {
         DesignedMenu.WriteServiceMessages("coursesID ");
 

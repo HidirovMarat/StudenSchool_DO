@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\HW2_folder\WorkWithUser\WorkWithUser.csproj" />
+    <ProjectReference Include="..\..\HW2\WorkWithUser\WorkWithUser.csproj" />
   </ItemGroup>
 
 </Project>

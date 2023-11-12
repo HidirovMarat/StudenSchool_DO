@@ -6,13 +6,13 @@ public interface IRepository
 
     public string GetColumns();
 
-    public string Gets();
+    public string GetAll();
 
     public string Get();
 
     public void Create();
 
-    public void Edite();
+    public void Edit();
 
     public void Delete();
 }
