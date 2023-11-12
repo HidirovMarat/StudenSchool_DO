@@ -6,34 +6,29 @@ namespace Provider;
 public class Students : Store, IRepository
 {
     private const string ID_NAME = "StudentID";
-    private const string GetsSQL = $"SELECT * FROM {TABLE_NAME}";
-    private const string GetSQL = $"SELECT * FROM {TABLE_NAME} WHERE {ID_NAME} = '{{0}}' ";
-    private const string CreateSQL = $"INSERT INTO {TABLE_NAME} ({ID_NAME}, Name, Age) VALUES ('{{0}}', '{{1}}', {{2}}) ";
-    private const string EditSQL = $"UPDATE {TABLE_NAME} SET Name = '{{1}}', Age = {{2}} WHERE {ID_NAME} = '{{0}}' ";
-    private const string DeleteSQL = $"DELETE FROM {TABLE_NAME} WHERE {ID_NAME} = '{{0}}' ";
+    private const string GET_ALL_SQL = $"SELECT * FROM {TABLE_NAME}";
+    private const string GET_SQL = $"SELECT * FROM {TABLE_NAME} WHERE {ID_NAME} = '{{0}}' ";
+    private const string CREATE_SQL = $"INSERT INTO {TABLE_NAME} ({ID_NAME}, Name, Age) VALUES ('{{0}}', '{{1}}', {{2}}) ";
+    private const string EDIT_SQL = $"UPDATE {TABLE_NAME} SET Name = '{{1}}', Age = {{2}} WHERE {ID_NAME} = '{{0}}' ";
+    private const string DELETE_SQL = $"DELETE FROM {TABLE_NAME} WHERE {ID_NAME} = '{{0}}' ";
 
     public const string TABLE_NAME = "Students";
 
     public string NameTable { get { return TABLE_NAME; } }
 
-    public string GetsFromDB()
+    public string GetAllFromDB()
     {
         var result = string.Empty;
 
         using var sqlConnection = new SqlConnection(ConnectionString);
-        var sqlCommand = new SqlCommand(GetsSQL, sqlConnection);
+        var sqlCommand = new SqlCommand(GET_ALL_SQL, sqlConnection);
 
         sqlConnection.Open();
         using var sqlDataReader = sqlCommand.ExecuteReader();
 
         while (sqlDataReader.Read())
         {
-            result += sqlDataReader[ID_NAME];
-            result += " ";
-            result += sqlDataReader["Name"];
-            result += " ";
-            result += sqlDataReader["Age"];
-            result += "\n";
+            result = $"{sqlDataReader[ID_NAME]} {sqlDataReader["Name"]} {sqlDataReader["Age"]}\n";
         }
 
         return result;
@@ -44,7 +39,7 @@ public class Students : Store, IRepository
         var result = string.Empty;
 
         using var sqlConnection = new SqlConnection(ConnectionString);
-        var formatedSQL = string.Format(GetSQL, studentID);
+        var formatedSQL = string.Format(GET_SQL, studentID);
         var sqlCommand = new SqlCommand(formatedSQL, sqlConnection);
 
         sqlConnection.Open();
@@ -52,12 +47,7 @@ public class Students : Store, IRepository
 
         while (sqlDataReader.Read())
         {
-            result += sqlDataReader[ID_NAME];
-            result += " ";
-            result += sqlDataReader["Name"];
-            result += " ";
-            result += sqlDataReader["Age"];
-            result += "\n";
+            result = $"{sqlDataReader[ID_NAME]} {sqlDataReader["Name"]} {sqlDataReader["Age"]}\n";
         }
 
         return result;
@@ -66,7 +56,7 @@ public class Students : Store, IRepository
     public void CreateFromDB(Guid studentID, string name, int age)
     {
         using var sqlConnection = new SqlConnection(ConnectionString);
-        var formatedSQL = string.Format(CreateSQL, studentID.ToString(), name, age);
+        var formatedSQL = string.Format(CREATE_SQL, studentID.ToString(), name, age);
         var sqlCommand = new SqlCommand(formatedSQL, sqlConnection);
         sqlConnection.Open();
         sqlCommand.ExecuteNonQuery();
@@ -75,7 +65,7 @@ public class Students : Store, IRepository
     public void EditeFromDB(Guid studentID, string name, int age)
     {
         using var sqlConnection = new SqlConnection(ConnectionString);
-        var formatedSQL = string.Format(EditSQL, studentID, name, age);
+        var formatedSQL = string.Format(EDIT_SQL, studentID, name, age);
         var sqlCommand = new SqlCommand(formatedSQL, sqlConnection);
 
         sqlConnection.Open();
@@ -85,7 +75,7 @@ public class Students : Store, IRepository
     public void DeleteFromDB(Guid studentID)
     {
         using var sqlConnection = new SqlConnection(ConnectionString);
-        var formatedSQL = string.Format(DeleteSQL, studentID);
+        var formatedSQL = string.Format(DELETE_SQL, studentID);
         var sqlCommand = new SqlCommand(formatedSQL, sqlConnection);
 
         sqlConnection.Open();
@@ -97,9 +87,9 @@ public class Students : Store, IRepository
         return "Guid StudentID, string Name, int Age";
     }
 
-    public string Gets()
+    public string GetAll()
     {
-        return GetsFromDB();
+        return GetAllFromDB();
     }
 
     public string Get()
@@ -128,7 +118,7 @@ public class Students : Store, IRepository
         CreateFromDB(studentID, name, age);
     }
 
-    public void Edite()
+    public void Edit()
     {
         DesignedMenu.WriteServiceMessages("studentsID ");
 

@@ -7,8 +7,7 @@ namespace Client;
 class ADO_CRUD : IInformation
 {
     private const string INFORMATION_MESSAGE = "CRUD with ADO.NET";
-    private const int NUMBER_OF_COURSES_TABLE = 0;
-    private const int NUMBER_OF_STUDENTS_TABLE = 1;
+
     private IRepository[] _tables = { new Courses(), new Students() };
 
     public string GetInformation()
@@ -18,7 +17,7 @@ class ADO_CRUD : IInformation
 
     public void Operate()
     {
-        DesignedMenu.WriteTextMenu($"1. {_tables[NUMBER_OF_COURSES_TABLE].NameTable}\n2. {_tables[NUMBER_OF_STUDENTS_TABLE].NameTable}");
+        DesignedMenu.WriteTextMenu($"1. {_tables[(int)Database.Course].NameTable}\n2. {_tables[(int)Database.Student].NameTable}");
 
         int numberOfTable = CorrectInput.GetNumberFromUser(x => x == 1 || x == 2);
 
@@ -26,7 +25,7 @@ class ADO_CRUD : IInformation
 
         DesignedMenu.WriteServiceMessages(table.GetColumns());
 
-        DesignedMenu.WriteTextMenu("1. Gets\n2. Get\n3. Create\n4. Edite\n5. Delete");
+        DesignedMenu.WriteTextMenu("1. GetAll\n2. Get\n3. Create\n4. Edite\n5. Delete");
 
         int operationNumber = CorrectInput.GetNumberFromUser(x => x >= 1 || x <= 5);
 
@@ -35,9 +34,9 @@ class ADO_CRUD : IInformation
 
     private void OperateTable(IRepository table, int operationNumber)
     {
-        if (operationNumber == (int)OperationWithDatabase.Gets)
+        if (operationNumber == (int)OperationWithDatabase.GetAll)
         {
-            DesignedMenu.WriteDefaultConsole(table.Gets());
+            DesignedMenu.WriteDefaultConsole(table.GetAll());
         }
 
         if (operationNumber == (int)OperationWithDatabase.Get)
@@ -52,7 +51,7 @@ class ADO_CRUD : IInformation
 
         if (operationNumber == (int)OperationWithDatabase.Edit)
         {
-            table.Edite();
+            table.Edit();
         }
 
         if (operationNumber == (int)OperationWithDatabase.Delete)

@@ -3,7 +3,7 @@
 enum OperationWithDatabase
 {
     None,
-    Gets,
+    GetAll,
     Get,
     Create,
     Edit,
