@@ -9,6 +9,9 @@ internal class Program
     {
         Console.WriteLine("Hello, World!");
 
+        Console.WriteLine(Guid.NewGuid());
+
+
         try
         {
             IInformation[] information = { new ADO_CRUD() };

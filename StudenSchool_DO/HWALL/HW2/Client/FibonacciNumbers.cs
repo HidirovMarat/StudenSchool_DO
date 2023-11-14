@@ -17,7 +17,7 @@ internal class FibonacciNumbers : IInformation
     {
         DesignedMenu.WriteTextMenu(MESSAGES_OPERATION);
 
-        int ordinalNumber = CorrectInput.GetNumberFromUser(x => x > 0);
+        int ordinalNumber = InputCorrector.GetNumberFromUser(x => x > 0);
 
         DesignedMenu.WriteDefaultConsole(GetFibonacciNumbers(ordinalNumber).ToString());
     }

@@ -16,7 +16,7 @@ internal class WebsiteSave : IInformation
 
     public void Operate()
     {
-        string path = CorrectInput.GetPathOfFile();
+        string path = InputCorrector.GetPathOfFile();
 
         DesignedMenu.WriteTextMenu(MESSAGES_OPERATION);
 

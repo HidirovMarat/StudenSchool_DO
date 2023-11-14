@@ -22,7 +22,7 @@ public class Menu
         {
             PrintMainMenu();
 
-            int numberItem = CorrectInput.GetNumberFromUser(choiceNumber => (0 <= choiceNumber) && (choiceNumber < _information.Length + 1));
+            int numberItem = InputCorrector.GetNumberFromUser(choiceNumber => (0 <= choiceNumber) && (choiceNumber < _information.Length + 1));
 
             if (numberItem == NUMBER_EXIT)
             {
@@ -56,7 +56,7 @@ public class Menu
     {
         DesignedMenu.WriteTextMenu(OPTIONAL_RERUN_MESSAGE);
 
-        int answer = CorrectInput.GetNumberFromUser(value => value == NUMBER_RUN_AGAIN || value == NUMBER_GO_BACK_TO_MAIN_MENU);
+        int answer = InputCorrector.GetNumberFromUser(value => value == NUMBER_RUN_AGAIN || value == NUMBER_GO_BACK_TO_MAIN_MENU);
 
         return answer == NUMBER_RUN_AGAIN;
     }

@@ -17,7 +17,7 @@ internal class FileReader : IInformation
     {
         DesignedMenu.WriteTextMenu(MESSAGES_OPERATION);
 
-        int numberOfLines = CorrectInput.GetNumberFromUser(x => x > 0);
+        int numberOfLines = InputCorrector.GetNumberFromUser(x => x > 0);
 
         var linesFromFile = GetLinesFromFile(numberOfLines);
 
@@ -29,7 +29,7 @@ internal class FileReader : IInformation
 
     private IEnumerable<string> GetLinesFromFile(int numberOfLines)
     {
-        string path = CorrectInput.GetPathOfFile();
+        string path = InputCorrector.GetPathOfFile();
 
         if (!File.Exists(path))
         {
