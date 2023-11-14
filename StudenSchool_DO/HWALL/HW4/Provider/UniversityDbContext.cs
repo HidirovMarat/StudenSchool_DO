@@ -17,4 +17,9 @@ public class UniversityDbContext : DbContext
     {
         optionsBuilder.UseSqlServer(@"Server=localhost\sqlexpress;Database=Universite;Trusted_Connection=True;Encrypt=False;");
     }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<DbGrade>().HasKey(u => new { u.StudentId, u.CourseId });
+    }
 }

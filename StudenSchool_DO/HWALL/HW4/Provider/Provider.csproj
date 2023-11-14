@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\HW2\WorkWithUser\WorkWithUser.csproj" />
     <ProjectReference Include="..\DbModels\DbModels.csproj" />
   </ItemGroup>
 

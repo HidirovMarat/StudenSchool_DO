@@ -25,11 +25,11 @@ public class EF_CRUD : IInformation
         DesignedMenu.WriteTextMenu($"1. {_studentRepository.TableName}\n2. {_courseRepository.TableName}" +
                                    $"\n3. {_teacherRepository.TableName}\n4. {_gradeRepository.TableName}");
 
-        int numberOfTable = CorrectInput.GetNumberFromUser(x => x >= 1 && x <= 4);
+        int numberOfTable = InputCorrector.GetNumberFromUser(x => x >= 1 && x <= 4);
 
         DesignedMenu.WriteTextMenu("1. GetAll\n2. Get\n3. Create\n4. Edite\n5. Delete");
 
-        int operationNumber = CorrectInput.GetNumberFromUser(x => x >= 1 || x <= 5);
+        int operationNumber = InputCorrector.GetNumberFromUser(x => x >= 1 || x <= 5);
 
         OperateOfTable(numberOfTable, operationNumber);
     }
@@ -70,7 +70,7 @@ public class EF_CRUD : IInformation
         if (operationNumber == (int)OperationWithDatabase.Get)
         {
             DesignedMenu.WriteServiceMessages("Введите Id");
-            Guid id = CorrectInput.GetGuidFromUser();
+            Guid id = InputCorrector.GetGuidFromUser();
 
             DesignedMenu.WriteDefaultConsole(entityRepository.Get(id).ToString());
         }
@@ -89,7 +89,7 @@ public class EF_CRUD : IInformation
             string faculty = Console.ReadLine()!;
 
             DesignedMenu.WriteServiceMessages("Введите DateOfAdmission");
-            DateTime dateOfAdmission = CorrectInput.GetDateTimeFromUser();
+            DateTime dateOfAdmission = InputCorrector.GetDateTimeFromUser();
 
             DbStudent student = new()
             {
@@ -106,7 +106,7 @@ public class EF_CRUD : IInformation
         if (operationNumber == (int)OperationWithDatabase.Edit)
         {
             DesignedMenu.WriteServiceMessages("Введите Id");
-            Guid id = CorrectInput.GetGuidFromUser();
+            Guid id = InputCorrector.GetGuidFromUser();
 
             DesignedMenu.WriteServiceMessages("Введите fistName");
             string fistName = Console.ReadLine()!;
@@ -118,7 +118,7 @@ public class EF_CRUD : IInformation
             string faculty = Console.ReadLine()!;
 
             DesignedMenu.WriteServiceMessages("Введите DateOfAdmission");
-            DateTime dateOfAdmission = CorrectInput.GetDateTimeFromUser();
+            DateTime dateOfAdmission = InputCorrector.GetDateTimeFromUser();
 
             DbStudent student = new()
             {
@@ -135,7 +135,7 @@ public class EF_CRUD : IInformation
         if (operationNumber == (int)OperationWithDatabase.Delete)
         {
             DesignedMenu.WriteServiceMessages("Введите Id");
-            Guid id = CorrectInput.GetGuidFromUser();
+            Guid id = InputCorrector.GetGuidFromUser();
 
             entityRepository.Delete(id);
         }
@@ -154,7 +154,7 @@ public class EF_CRUD : IInformation
         if (operationNumber == (int)OperationWithDatabase.Get)
         {
             DesignedMenu.WriteServiceMessages("Введите Id");
-            Guid id = CorrectInput.GetGuidFromUser();
+            Guid id = InputCorrector.GetGuidFromUser();
 
             DesignedMenu.WriteDefaultConsole(entityRepository.Get(id).ToString());
         }
@@ -167,7 +167,7 @@ public class EF_CRUD : IInformation
             string nameCourse = Console.ReadLine()!;
 
             DesignedMenu.WriteServiceMessages("Введите credit");
-            int credit = CorrectInput.GetNumberFromUser(x => x > 0);
+            int credit = InputCorrector.GetNumberFromUser(x => x > 0);
 
             DbCourse course = new()
             {
@@ -182,13 +182,13 @@ public class EF_CRUD : IInformation
         if (operationNumber == (int)OperationWithDatabase.Edit)
         {
             DesignedMenu.WriteServiceMessages("Введите Id");
-            Guid id = CorrectInput.GetGuidFromUser();
+            Guid id = InputCorrector.GetGuidFromUser();
 
             DesignedMenu.WriteServiceMessages("Введите nameCourse");
             string nameCourse = Console.ReadLine()!;
 
             DesignedMenu.WriteServiceMessages("Введите credit");
-            int credit = CorrectInput.GetNumberFromUser(x => x > 0);
+            int credit = InputCorrector.GetNumberFromUser(x => x > 0);
 
             DbCourse course = new()
             {
@@ -203,7 +203,7 @@ public class EF_CRUD : IInformation
         if (operationNumber == (int)OperationWithDatabase.Delete)
         {
             DesignedMenu.WriteServiceMessages("Введите Id");
-            Guid id = CorrectInput.GetGuidFromUser();
+            Guid id = InputCorrector.GetGuidFromUser();
 
             entityRepository.Delete(id);
         }
@@ -222,7 +222,7 @@ public class EF_CRUD : IInformation
         if (operationNumber == (int)OperationWithDatabase.Get)
         {
             DesignedMenu.WriteServiceMessages("Введите Id");
-            Guid id = CorrectInput.GetGuidFromUser();
+            Guid id = InputCorrector.GetGuidFromUser();
 
             DesignedMenu.WriteDefaultConsole(entityRepository.Get(id).ToString());
         }
@@ -254,7 +254,7 @@ public class EF_CRUD : IInformation
         if (operationNumber == (int)OperationWithDatabase.Edit)
         {
             DesignedMenu.WriteServiceMessages("Введите Id");
-            Guid id = CorrectInput.GetGuidFromUser();
+            Guid id = InputCorrector.GetGuidFromUser();
 
             DesignedMenu.WriteServiceMessages("Введите FistName");
             string fistName = Console.ReadLine()!;
@@ -279,7 +279,7 @@ public class EF_CRUD : IInformation
         if (operationNumber == (int)OperationWithDatabase.Delete)
         {
             DesignedMenu.WriteServiceMessages("Введите Id");
-            Guid id = CorrectInput.GetGuidFromUser();
+            Guid id = InputCorrector.GetGuidFromUser();
 
             entityRepository.Delete(id);
         }
@@ -297,28 +297,28 @@ public class EF_CRUD : IInformation
 
         if (operationNumber == (int)OperationWithDatabase.Get)
         {
-            DesignedMenu.WriteServiceMessages("Введите Id");
-            Guid id = CorrectInput.GetGuidFromUser();
+            DesignedMenu.WriteServiceMessages("Введите StudentId");
+            Guid studentId = InputCorrector.GetGuidFromUser();
 
-            DesignedMenu.WriteDefaultConsole(entityRepository.Get(id).ToString());
+            DesignedMenu.WriteServiceMessages("Введите CourseId");
+            Guid courseId = InputCorrector.GetGuidFromUser();
+
+            DesignedMenu.WriteDefaultConsole(entityRepository.Get(studentId, courseId).ToString());
         }
 
         if (operationNumber == (int)OperationWithDatabase.Create)
         {
-            Guid id = Guid.NewGuid();
-
             DesignedMenu.WriteServiceMessages("Введите CourseId");
-            Guid courseId = CorrectInput.GetGuidFromUser();
+            Guid courseId = InputCorrector.GetGuidFromUser();
 
             DesignedMenu.WriteServiceMessages("Введите StudentId");
-            Guid studentId = CorrectInput.GetGuidFromUser();
+            Guid studentId = InputCorrector.GetGuidFromUser();
 
             DesignedMenu.WriteServiceMessages("Введите Grade");
-            int gradeStudnet = CorrectInput.GetNumberFromUser(x => x >= 1 && x <= 5);
+            int gradeStudnet = InputCorrector.GetNumberFromUser(x => x >= 1 && x <= 5);
 
             DbGrade grade = new()
             {
-                Id = id,
                 CourseId = courseId,
                 StudentId = studentId,
                 Grade = gradeStudnet
@@ -329,21 +329,17 @@ public class EF_CRUD : IInformation
 
         if (operationNumber == (int)OperationWithDatabase.Edit)
         {
-            DesignedMenu.WriteServiceMessages("Введите Id");
-            Guid id = CorrectInput.GetGuidFromUser();
-
             DesignedMenu.WriteServiceMessages("Введите CourseId");
-            Guid courseId = CorrectInput.GetGuidFromUser();
+            Guid courseId = InputCorrector.GetGuidFromUser();
 
             DesignedMenu.WriteServiceMessages("Введите StudentId");
-            Guid studentId = CorrectInput.GetGuidFromUser();
+            Guid studentId = InputCorrector.GetGuidFromUser();
 
             DesignedMenu.WriteServiceMessages("Введите Grade");
-            int gradeStudnet = CorrectInput.GetNumberFromUser(x => x >= 1 && x <= 5);
+            int gradeStudnet = InputCorrector.GetNumberFromUser(x => x >= 1 && x <= 5);
 
             DbGrade grade = new()
             {
-                Id = id,
                 CourseId = courseId,
                 StudentId = studentId,
                 Grade = gradeStudnet
@@ -354,10 +350,13 @@ public class EF_CRUD : IInformation
 
         if (operationNumber == (int)OperationWithDatabase.Delete)
         {
-            DesignedMenu.WriteServiceMessages("Введите Id");
-            Guid id = CorrectInput.GetGuidFromUser();
+            DesignedMenu.WriteServiceMessages("Введите StudentId");
+            Guid studentId = InputCorrector.GetGuidFromUser();
 
-            entityRepository.Delete(id);
+            DesignedMenu.WriteServiceMessages("Введите CourseId");
+            Guid courseId = InputCorrector.GetGuidFromUser();
+
+            entityRepository.Delete(studentId, courseId);
         }
     }
 }

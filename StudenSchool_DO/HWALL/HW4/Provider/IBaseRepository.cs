@@ -1,6 +1,4 @@
-﻿using DbModels;
-
-namespace Provider;
+﻿namespace Provider;
 
 public interface IBaseRepository<T>
 {

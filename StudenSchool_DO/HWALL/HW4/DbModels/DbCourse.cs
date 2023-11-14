@@ -17,7 +17,6 @@ public class DbCourse : ICopyable<DbCourse>
 
     public void Copy(DbCourse fromCourse)
     {
-        Id = fromCourse.Id;
         NameCourse = fromCourse.NameCourse;
         Credit = fromCourse.Credit;
     }

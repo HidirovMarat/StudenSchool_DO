@@ -11,11 +11,13 @@ public class TeacherRepository : IBaseRepository<DbTeacher>
 
     public IQueryable<DbTeacher> GetAll() => _dbContext.Teachers;
 
-    public DbTeacher Get(Guid teacherId) =>
-        _dbContext.Teachers
+    public DbTeacher Get(Guid teacherId)
+    {
+       return _dbContext.Teachers
         .AsNoTracking()
         .Where(u => u.Id == teacherId)
         .FirstOrDefault()!;
+    }
 
     public void Create(DbTeacher teacher)
     {

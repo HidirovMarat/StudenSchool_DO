@@ -2,8 +2,6 @@
 
 public class DbGrade : ICopyable<DbGrade>
 {
-    public Guid Id { get; set; }
-
     public Guid StudentId { get; set; }
 
     public DbStudent? Student { get; set; }
@@ -16,14 +14,13 @@ public class DbGrade : ICopyable<DbGrade>
 
     public override string ToString()
     {
-        return $"{Id} {StudentId} {CourseId} {Grade}";
+        return $"{StudentId} {CourseId} {Grade}";
     }
 
     public void Copy(DbGrade fromGrade)
     {
-        Id = fromGrade.Id ;
-        StudentId = fromGrade.StudentId ;
-        CourseId = fromGrade.CourseId ;
-        Grade = fromGrade.Grade ;
+        StudentId = fromGrade.StudentId;
+        CourseId = fromGrade.CourseId;
+        Grade = fromGrade.Grade;
     }
 }

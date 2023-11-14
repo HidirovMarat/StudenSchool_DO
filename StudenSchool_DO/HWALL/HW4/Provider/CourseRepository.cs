@@ -11,11 +11,13 @@ public class CourseRepository : IBaseRepository<DbCourse>
 
     public IQueryable<DbCourse> GetAll() => _dbContext.Courses;
 
-    public DbCourse Get(Guid courseId) =>
-        _dbContext.Courses
+    public DbCourse Get(Guid courseId)
+    {
+        return _dbContext.Courses
         .AsNoTracking()
         .Where(u => u.Id == courseId)
         .FirstOrDefault()!;
+    }
 
     public void Create(DbCourse course)
     {

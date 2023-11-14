@@ -12,12 +12,13 @@ public class StudentRepository : IBaseRepository<DbStudent>
 
     public IQueryable<DbStudent> GetAll() => _dbContext.Students;
 
-    public DbStudent Get(Guid studentId) =>
-        _dbContext.Students
+    public DbStudent Get(Guid studentId)
+    {
+        return _dbContext.Students
         .AsNoTracking()
         .Where(u => u.Id == studentId)
         .FirstOrDefault()!;
-
+    }
     public void Create(DbStudent student)
     {
         _dbContext.Add(student);

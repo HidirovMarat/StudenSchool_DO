@@ -21,10 +21,9 @@ public class DbStudent : ICopyable<DbStudent>
 
     public void Copy(DbStudent fromStudent)
     {
-        Id = fromStudent.Id ;
-        FirstName = fromStudent.FirstName ;
-        LastName = fromStudent.LastName ;
-        DateOfAdmission = fromStudent.DateOfAdmission ;
-        Faculty = fromStudent.Faculty ;
+        FirstName = fromStudent.FirstName;
+        LastName = fromStudent.LastName;
+        DateOfAdmission = fromStudent.DateOfAdmission;
+        Faculty = fromStudent.Faculty;
     }
 }

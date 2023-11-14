@@ -17,9 +17,8 @@ public class DbTeacher : ICopyable<DbTeacher>
 
     public void Copy(DbTeacher fromTeacher)
     {
-        Id = fromTeacher.Id ;
-        FirstName = fromTeacher.FirstName ;
-        LastName = fromTeacher.LastName ;
-        Faculty = fromTeacher.Faculty ;
+        FirstName = fromTeacher.FirstName;
+        LastName = fromTeacher.LastName;
+        Faculty = fromTeacher.Faculty;
     }
 }
