@@ -2,7 +2,7 @@
 
 public delegate bool CheckingCondition(int value);
 
-public static class CorrectInput
+public static class InputCorrector
 {
     public static int GetNumberFromUser(CheckingCondition IsCondition)
     {
