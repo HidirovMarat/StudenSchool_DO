@@ -1,12 +1,24 @@
 ﻿using Menu;
-using WorkWithUser;
+using Services.Base;
 
-namespace Client;
+namespace MenuItem;
 
-internal class FibonacciNumbers : IInformation
+public class FibonacciNumbers : IInformation
 {
+    public IOutputService OutputService { get { return _outputService; }}
+
     private const string INFORMATION_MESSAGE = "Вывод числа Фибоначчи";
     private const string MESSAGES_OPERATION = "Введите порядковый номер числа Фибоначчи:";
+
+    private IInputNumberService _inputNumberService;
+    private IOutputService _outputService;
+
+
+    public FibonacciNumbers(IInputNumberService inputNumberService, IOutputService outputService)
+    {
+        _inputNumberService = inputNumberService;
+        _outputService = outputService;
+    }
 
     public string GetInformation()
     {
@@ -15,11 +27,11 @@ internal class FibonacciNumbers : IInformation
 
     public void Operate()
     {
-        DesignedMenu.WriteTextMenu(MESSAGES_OPERATION);
+        _outputService.PrintTextMenu(MESSAGES_OPERATION);
 
-        int ordinalNumber = InputCorrector.GetNumberFromUser(x => x > 0);
+        int ordinalNumber = _inputNumberService.GetNumberIntByCondition(x => x > 0);
 
-        DesignedMenu.WriteDefaultConsole(GetFibonacciNumbers(ordinalNumber).ToString());
+        _outputService.PrintDefault(GetFibonacciNumbers(ordinalNumber).ToString());
     }
 
     private int GetFibonacciNumbers(int ordinalNumber)

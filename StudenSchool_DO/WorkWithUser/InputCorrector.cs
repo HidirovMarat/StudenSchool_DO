@@ -1,10 +1,9 @@
 ﻿namespace WorkWithUser;
 
-public delegate bool CheckingCondition(int value);
-
 public static class InputCorrector
 {
-    public static int GetNumberFromUser(CheckingCondition IsCondition)
+
+    public static int GetNumberFromUser(Predicate<int> IsCondition)
     {
         int numberOfLines;
 
@@ -16,7 +15,7 @@ public static class InputCorrector
         return numberOfLines;
     }
 
-    private static bool IsValid(CheckingCondition IsCondition, out int value) => (int.TryParse(Console.ReadLine(), out value) && IsCondition(value));
+    private static bool IsValid(Predicate<int> IsCondition, out int value) => (int.TryParse(Console.ReadLine(), out value) && IsCondition(value));
 
     public static string GetPathOfFile()
     {

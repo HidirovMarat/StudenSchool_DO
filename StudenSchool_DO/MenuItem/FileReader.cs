@@ -1,12 +1,26 @@
 ﻿using Menu;
-using WorkWithUser;
+using Services.Base;
 
-namespace Client;
+namespace MenuItem;
 
-internal class FileReader : IInformation
+public class FileReader : IInformation
 {
+    public IOutputService OutputService { get { return _outputService; } }
+
     private const string INFORMATION_MESSAGE = "Чтение";
     private const string MESSAGES_OPERATION = "Введите сколько строк хотите получить: ";
+
+    private IInputNumberService _inputNumberService;
+    private IOutputService _outputService;
+    private IInputPathService _inputPathService;
+
+
+    public FileReader(IInputNumberService inputNumberService, IOutputService outputService, IInputPathService inputPathService)
+    {
+        _inputNumberService = inputNumberService;
+        _outputService = outputService;
+        _inputPathService = inputPathService;
+    }
 
     public string GetInformation()
     {
@@ -15,21 +29,21 @@ internal class FileReader : IInformation
 
     public void Operate()
     {
-        DesignedMenu.WriteTextMenu(MESSAGES_OPERATION);
+        _outputService.PrintDefault(MESSAGES_OPERATION);
 
-        int numberOfLines = InputCorrector.GetNumberFromUser(x => x > 0);
+        int numberOfLines = _inputNumberService.GetNumberIntByCondition(x => x > 0);
 
         var linesFromFile = GetLinesFromFile(numberOfLines);
 
         foreach (var line in linesFromFile)
         {
-            DesignedMenu.WriteDefaultConsole(line);
+            _outputService.PrintDefault(line);
         }
     }
 
     private IEnumerable<string> GetLinesFromFile(int numberOfLines)
     {
-        string path = InputCorrector.GetPathOfFile();
+        string path = _inputPathService.GetPathOfFile();
 
         if (!File.Exists(path))
         {

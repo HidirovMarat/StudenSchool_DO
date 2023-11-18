@@ -1,4 +1,4 @@
-﻿using WorkWithUser;
+﻿using Services.Base;
 
 namespace Menu;
 
@@ -10,9 +10,13 @@ public class Menu
     private const int NUMBER_EXIT = 0;
 
     private IInformation[] _information;
+    private IInputNumberService _inputNumberIntService;
+    private IOutputService _outputOutputService;
 
-    public Menu(IInformation[] information)
+    public Menu(IInputNumberService inputNumberInt, IOutputService outputOutputService, IInformation[] information)
     {
+        _inputNumberIntService = inputNumberInt;
+        _outputOutputService = outputOutputService;
         _information = information;
     }
 
@@ -22,7 +26,7 @@ public class Menu
         {
             PrintMainMenu();
 
-            int numberItem = InputCorrector.GetNumberFromUser(choiceNumber => (0 <= choiceNumber) && (choiceNumber < _information.Length + 1));
+            int numberItem = _inputNumberIntService.GetNumberIntByCondition(choiceNumber => (0 <= choiceNumber) && (choiceNumber < _information.Length + 1));
 
             if (numberItem == NUMBER_EXIT)
             {
@@ -35,11 +39,11 @@ public class Menu
 
     private void PrintMainMenu()
     {
-        DesignedMenu.WriteTextMenu("0. Выход");
+        _outputOutputService.PrintTextMenu("0. Выход");
 
         for (int i = 0; i < _information.Length; i++)
         {
-            DesignedMenu.WriteTextMenu($"{i + 1}. {_information[i].GetInformation()}");
+            _outputOutputService.PrintTextMenu($"{i + 1}. {_information[i].GetInformation()}");
         }
     }
 
@@ -54,9 +58,9 @@ public class Menu
 
     private bool Repeat()
     {
-        DesignedMenu.WriteTextMenu(OPTIONAL_RERUN_MESSAGE);
+        _outputOutputService.PrintTextMenu(OPTIONAL_RERUN_MESSAGE);
 
-        int answer = InputCorrector.GetNumberFromUser(value => value == NUMBER_RUN_AGAIN || value == NUMBER_GO_BACK_TO_MAIN_MENU);
+        int answer = _inputNumberIntService.GetNumberIntByCondition(value => value == NUMBER_RUN_AGAIN || value == NUMBER_GO_BACK_TO_MAIN_MENU);
 
         return answer == NUMBER_RUN_AGAIN;
     }

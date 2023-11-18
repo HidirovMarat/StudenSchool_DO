@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -8,9 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\HW2\Menu\Menu.csproj" />
-    <ProjectReference Include="..\DbModels\DbModels.csproj" />
-    <ProjectReference Include="..\Provider\Provider.csproj" />
+    <ProjectReference Include="..\MenuItem\MenuItem.csproj" />
+    <ProjectReference Include="..\Menu\Menu.csproj" />
+    <ProjectReference Include="..\Services\Services\Services.csproj" />
   </ItemGroup>
 
 </Project>
