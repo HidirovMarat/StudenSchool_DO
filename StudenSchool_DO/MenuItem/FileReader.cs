@@ -29,7 +29,7 @@ public class FileReader : IInformation
 
     public void Operate()
     {
-        _outputService.PrintDefault(MESSAGES_OPERATION);
+        _outputService.PrintTextMenu(MESSAGES_OPERATION);
 
         int numberOfLines = _inputNumberService.GetNumberIntByCondition(x => x > 0);
 
@@ -43,7 +43,7 @@ public class FileReader : IInformation
 
     private IEnumerable<string> GetLinesFromFile(int numberOfLines)
     {
-        string path = _inputPathService.GetPathOfFile();
+        string? path = _inputPathService.GetPathOfFile();
 
         if (!File.Exists(path))
         {

@@ -5,15 +5,17 @@ namespace Services;
 public class WebInputStringService : IInputStringService
 {
     private int _index = 0;
-    private List<string> _values;
+    static private List<string> _values;
 
-    public WebInputStringService(List<string> values)
-    {
-        _values = values;
-    }
+    public static List<string > Values {  get { return _values; } set { _values = value; } }
 
     public string GetString()
     {
+        if (_index >= _values.Count)
+        {
+            throw new InvalidOperationException("index >= _values.Count");
+        }
+
         return _values[_index++];
     }
 

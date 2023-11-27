@@ -1,31 +1,32 @@
 ﻿using Services.Base;
-using WorkWithUser;
 
 namespace Services;
 
 public class WebInputService : IInputNumberService
 {
-    private IOutputService _outputService;
     private IInputStringService _inputStringService;
 
-
-    public WebInputService(IOutputService outputService, IInputStringService inputStringService)
+    public WebInputService(IInputStringService inputStringService)
     {
-        _outputService = outputService;
         _inputStringService = inputStringService;
     }
 
-    public int GetNumberIntByCondition(Predicate<int> IsCondition)
+    public int GetNumberIntByCondition(Predicate<int> isCondition)
     {
+        string numberString = _inputStringService.GetString();
+
         int numberOfLines;
 
-        while (!IsValid(IsCondition, out numberOfLines))
+        if (!int.TryParse(numberString, out numberOfLines))
         {
-            _outputService.PrintServiceMessages("Неправильный ввод. Повторите");
+            throw new Exception("Строка не получается конвертировать в число.");
+        }
+
+        if (!isCondition(numberOfLines))
+        {
+            throw new Exception("Число не удовл. условиям.");
         }
 
         return numberOfLines;
     }
-
-    private bool IsValid(Predicate<int> IsCondition, out int value) => (int.TryParse(_inputStringService.GetString(), out value) && IsCondition(value));
 }

@@ -11,16 +11,16 @@ public class WebsiteSave : IInformation
     private const string INFORMATION = "Запись";
     private const string MESSAGES_OPERATION = "Введите url страницы: ";
 
-    private IInputNumberService _inputNumberService;
     private IOutputService _outputService;
     private IInputPathService _inputPathService;
+    private IInputStringService _inputStringService;
 
 
-    public WebsiteSave(IInputNumberService inputNumberService, IOutputService outputService, IInputPathService inputPathService)
+    public WebsiteSave(IOutputService outputService, IInputPathService inputPathService, IInputStringService inputStringService)
     {
-        _inputNumberService = inputNumberService;
         _outputService = outputService;
         _inputPathService = inputPathService;
+        _inputStringService = inputStringService;
     }
 
     public string GetInformation()
@@ -30,7 +30,12 @@ public class WebsiteSave : IInformation
 
     public void Operate()
     {
-        string path = _inputPathService.GetPathOfFile();
+        string? path = _inputPathService.GetPathOfFile();
+
+        if (path == null)
+        {
+            return;
+        }
 
         _outputService.PrintTextMenu(MESSAGES_OPERATION);
 
@@ -41,7 +46,12 @@ public class WebsiteSave : IInformation
 
         while (true)
         {
-            string _url = Console.ReadLine() ?? "";
+            string? _url = _inputStringService.GetString();
+
+            if (_url == null)
+            {
+                return;
+            }
 
             using WebClient client = new();
 
@@ -53,7 +63,7 @@ public class WebsiteSave : IInformation
             }
             catch
             {
-                _outputService.PrintServiceMessages("Ошибка. Введите еще раз url");
+                _outputService.PrintErrorMessages("Ошибка. Введите еще раз url");
             }
         }
     }

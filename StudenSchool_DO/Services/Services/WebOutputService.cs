@@ -6,7 +6,7 @@ public class WebOutputService : IOutputService
 {
     public string ResultMessages { get; set; }
 
-    public string ErrorMessages { get; set; }
+    public List<string> ErrorMessages { get; set; } = new();
 
     public string ServiceMessages { get; set; }
 
@@ -14,12 +14,12 @@ public class WebOutputService : IOutputService
 
     public void PrintDefault(string message)
     {
-        ResultMessages += message;
+        ResultMessages += message + "\n";
     }
 
     public void PrintErrorMessages(string message)
     {
-        ErrorMessages += message;
+        ErrorMessages.Add(message);
     }
 
     public void PrintServiceMessages(string message)

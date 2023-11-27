@@ -4,7 +4,7 @@ public interface IOutputService
 {
     string ResultMessages { get; set; }
 
-    string ErrorMessages { get; set; }
+    List<string> ErrorMessages { get; set; }
 
     string ServiceMessages { get; set; }
 

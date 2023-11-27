@@ -6,18 +6,15 @@ namespace Services;
 public class WebInputPathService : IInputPathService
 {
     IInputStringService _inputStringService;
-    IOutputService _outputService;
+
+    public WebInputPathService(IInputStringService inputStringService)
+    {
+        _inputStringService = inputStringService;
+    }
 
     public string GetPathOfFile()
     {
-        string path = _inputStringService.GetString() ?? "";
-
-        while (!File.Exists(path))
-        {
-            _outputService.PrintServiceMessages("Нет такого файла. Повторите");
-
-            path = _inputStringService.GetString() ?? "";
-        }
+        string path = _inputStringService.GetString();
 
         return path;
     }

@@ -9,6 +9,7 @@ public class ConsoleOutputService : IOutputService
     public string ErrorMessages { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public string ServiceMessages { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public string TextMenu { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    List<string> IOutputService.ErrorMessages { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
     public void PrintDefault(string message)
     {

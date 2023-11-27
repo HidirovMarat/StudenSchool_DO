@@ -48,4 +48,6 @@ public class StudentRepository : IBaseRepository<DbStudent>
 
         _dbContext.SaveChanges();
     }
+
+    public bool IsData(Guid id) => _dbContext.Students.Any(u => u.Id == id);
 }

@@ -21,7 +21,7 @@ internal class Program
         {
             new FibonacciNumbers(inputNumberService, serviceOutput),
             new FileReader(inputNumberService, serviceOutput, inputPathService),
-            new WebsiteSave(inputNumberService, serviceOutput, inputPathService),
+            new WebsiteSave(serviceOutput, inputPathService, inputStringService),
             new EF_CRUD(inputNumberService, serviceOutput, inputGuidService,inputStringService, inputDateTimeService)
         };
 

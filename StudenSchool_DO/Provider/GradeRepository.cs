@@ -51,4 +51,6 @@ public class GradeRepository
 
         _dbContext.SaveChanges();
     }
+
+    public bool IsData(Guid courseId, Guid studentId) => _dbContext.Grades.Any(u => u.CourseId == courseId && u.StudentId == studentId);
 }
