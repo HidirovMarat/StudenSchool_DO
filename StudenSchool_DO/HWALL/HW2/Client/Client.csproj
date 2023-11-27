@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Menu\Menu.csproj" />
+    <ProjectReference Include="..\WorkWithUser\WorkWithUser.csproj" />
+  </ItemGroup>
+
 </Project>

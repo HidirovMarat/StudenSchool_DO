@@ -1,4 +1,7 @@
-﻿namespace HW2;
+﻿using Menu;
+using WorkWithUser;
+
+namespace Client;
 
 internal class FibonacciNumbers : IInformation
 {
@@ -14,7 +17,7 @@ internal class FibonacciNumbers : IInformation
     {
         DesignedMenu.WriteTextMenu(MESSAGES_OPERATION);
 
-        int ordinalNumber = WorkWithUser.GetNumberFromUser(x => x > 0);
+        int ordinalNumber = InputCorrector.GetNumberFromUser(x => x > 0);
 
         DesignedMenu.WriteDefaultConsole(GetFibonacciNumbers(ordinalNumber).ToString());
     }

@@ -1,6 +1,6 @@
-﻿namespace HW2;
+﻿namespace Menu;
 
-internal interface IInformation
+public interface IInformation
 {
     string GetInformation();
 
