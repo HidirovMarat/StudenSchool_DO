@@ -1,6 +1,6 @@
-﻿namespace SS_Web.Entitys;
+﻿namespace SS_Web.Requests.Teacher;
 
-public class TeacherInfo
+public class CreateTeacherRequest
 {
     public string FirstName { get; set; }
 

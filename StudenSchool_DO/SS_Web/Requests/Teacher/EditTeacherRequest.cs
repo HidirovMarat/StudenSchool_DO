@@ -1,7 +1,9 @@
-﻿namespace SS_Web.Entitys;
+﻿namespace SS_Web.Requests.Teacher;
 
-public class TeacherInfo
+public class EditTeacherRequest
 {
+    public Guid Id { get; set; }
+
     public string FirstName { get; set; }
 
     public string LastName { get; set; }

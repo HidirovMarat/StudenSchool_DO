@@ -1,10 +1,12 @@
-﻿namespace SS_Web.Entitys;
+﻿namespace SS_Web.Requests.Student;
 
-public class TeacherInfo
+public class CreateStudentRequest
 {
     public string FirstName { get; set; }
 
     public string LastName { get; set; }
+
+    public DateTime DateOfAdmission { get; set; }
 
     public string Faculty { get; set; }
 }

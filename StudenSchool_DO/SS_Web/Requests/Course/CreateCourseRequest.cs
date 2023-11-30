@@ -1,6 +1,6 @@
-﻿namespace SS_Web.Entitys;
+﻿namespace SS_Web.Requests.Course;
 
-public class CourseInfo
+public class CreateCourseRequest
 {
     public string NameCourse { get; set; }
 

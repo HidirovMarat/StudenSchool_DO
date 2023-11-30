@@ -4,9 +4,23 @@ using Services;
 using Services.Base;
 using SS_Web.Actions;
 using SS_Web.Actions.@base;
-using SS_Web.Responses;
-using SS_Web.Validators;
-using SS_Web.Validators.@base;
+using SS_Web.Responses.CourseResponses;
+using SS_Web.Responses.FibonacciNumbersResponses;
+using SS_Web.Responses.FileReaderResponses;
+using SS_Web.Responses.GradeResponses;
+using SS_Web.Responses.StudentResponses;
+using SS_Web.Responses.TeacherResponses;
+using SS_Web.Responses.WebsiteSaveResponses;
+using SS_Web.Validators.Course;
+using SS_Web.Validators.Course.Interfaces;
+using SS_Web.Validators.Grade;
+using SS_Web.Validators.Grade.Interfaces;
+using SS_Web.Validators.Student;
+using SS_Web.Validators.Student.Interfaces;
+using SS_Web.Validators.Teacher;
+using SS_Web.Validators.Teacher.Interfaces;
+using SS_Web.Validators.WebsiteSave;
+using SS_Web.Validators.WebsiteSave.Interfaces;
 
 namespace SS_Web
 {
@@ -29,7 +43,7 @@ namespace SS_Web
             builder.Services.AddTransient<CreateFibonacciNumbersResponse>();
             builder.Services.AddTransient<FileReader>();
             builder.Services.AddTransient<IInputPathService, WebInputPathService>();
-            builder.Services.AddTransient<CreateFileReaderResponse>();
+            builder.Services.AddTransient<GetFileReaderResponse>();
             builder.Services.AddTransient<ICreateWebsiteSaveRequestValidator, CreateWebsiteSaveRequestValidator>();
             builder.Services.AddTransient<IWebsiteSaveActions, WebsiteSaveActions>();
             builder.Services.AddTransient<WebsiteSave>();
@@ -53,7 +67,7 @@ namespace SS_Web
 
             builder.Services.AddTransient<CreateCourseResponse>();
             builder.Services.AddTransient<CreateStudentResponse>();
-            builder.Services.AddTransient<CreateTeacherResponse>();
+            builder.Services.AddTransient<CreateWebsiteSaveRequestResponse>();
             builder.Services.AddTransient<CreateGradeResponse>();
 
             var app = builder.Build();
