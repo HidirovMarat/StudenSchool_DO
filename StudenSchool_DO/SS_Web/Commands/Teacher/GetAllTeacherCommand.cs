@@ -1,10 +1,9 @@
 ﻿using Provider;
-using SS_Web.Commands.Teacher.Interfaces;
-using SS_Web.Entitys;
-using SS_Web.Responses.TeacherResponses;
-using SS_Web.Validators.Teacher.Interfaces;
+using SS_WEB.Commands.Teacher.Interfaces;
+using Models.Entitys;
+using Models.Responses.TeacherResponses;
 
-namespace SS_Web.Commands.Teacher;
+namespace SS_WEB.Commands.Teacher;
 
 public class GetAllTeacherCommand : IGetAllTeacherCommand
 {

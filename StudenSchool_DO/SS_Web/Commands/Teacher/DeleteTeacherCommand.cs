@@ -1,10 +1,10 @@
 ﻿using Provider;
-using SS_Web.Commands.Teacher.Interfaces;
-using SS_Web.Requests.Teacher;
-using SS_Web.Responses.TeacherResponses;
-using SS_Web.Validators.Teacher.Interfaces;
+using SS_WEB.Commands.Teacher.Interfaces;
+using Models.Requests.Teacher;
+using Models.Responses.TeacherResponses;
+using Models.Validators.Teacher.Interfaces;
 
-namespace SS_Web.Commands.Teacher;
+namespace SS_WEB.Commands.Teacher;
 
 public class DeleteTeacherCommand : IDeleteTeacherCommand
 {

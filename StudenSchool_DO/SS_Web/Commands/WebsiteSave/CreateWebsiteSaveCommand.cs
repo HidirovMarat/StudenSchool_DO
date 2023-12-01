@@ -1,11 +1,11 @@
 ﻿using Services;
-using SS_Web.Commands.WebsiteSave.Interfaces;
-using SS_Web.Requests.WebsiteSave;
-using SS_Web.Responses.WebsiteSaveResponses;
-using SS_Web.Validators.WebsiteSave.Interfaces;
+using SS_WEB.Commands.WebsiteSave.Interfaces;
+using Models.Requests.WebsiteSave;
+using Models.Responses.WebsiteSaveResponses;
+using Models.Validators.WebsiteSave.Interfaces;
 using MenuItem;
 
-namespace SS_Web.Commands.WebsiteSave;
+namespace SS_WEB.Commands.WebsiteSave;
 
 public class CreateWebsiteSaveCommand : ICreateWebsiteSaveCommand
 {

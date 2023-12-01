@@ -1,18 +1,23 @@
-﻿using Azure;
-using FluentValidation;
-using Provider;
-using SS_Web.Commands.Course.Interfaces;
-using SS_Web.Requests.Course;
-using SS_Web.Responses.CourseResponses;
-using SS_Web.Validators.Course.Interfaces;
+﻿using Provider;
+using SS_WEB.Commands.Course.Interfaces;
+using Models.Requests.Course;
+using Models.Responses.CourseResponses;
+using Models.Validators.Course.Interfaces;
 
-namespace SS_Web.Commands.Course;
+namespace SS_WEB.Commands.Course;
 
 public class GetCourseCommand : IGetCourseCommand
 {
     private IGetCourseRequestValidator _validator;
     private GetCourseResponse _response;
     private CourseRepository _repository;
+
+    public GetCourseCommand(IGetCourseRequestValidator validator, GetCourseResponse response, CourseRepository repository)
+    {
+        _validator = validator;
+        _response = response;
+        _repository = repository;
+    }
 
     public GetCourseResponse Execute(GetCourseRequest request)
     {

@@ -1,6 +1,6 @@
-﻿using SS_Web.Responses.TeacherResponses;
+﻿using Models.Responses.TeacherResponses;
 
-namespace SS_Web.Commands.Teacher.Interfaces;
+namespace SS_WEB.Commands.Teacher.Interfaces;
 
 public interface IGetAllTeacherCommand
 {

@@ -1,9 +1,9 @@
 ﻿using Provider;
-using SS_Web.Commands.Student.Interfaces;
-using SS_Web.Entitys;
-using SS_Web.Responses.StudentResponses;
+using SS_WEB.Commands.Student.Interfaces;
+using Models.Entitys;
+using Models.Responses.StudentResponses;
 
-namespace SS_Web.Commands.Student;
+namespace SS_WEB.Commands.Student;
 
 public class GetAllStudentCommand : IGetAllStudentCommand
 {

@@ -1,7 +1,7 @@
-﻿using SS_Web.Requests.FileReader;
-using SS_Web.Responses.FileReaderResponses;
+﻿using Models.Requests.FileReader;
+using Models.Responses.FileReaderResponses;
 
-namespace SS_Web.Commands.FileReader.Interfaces;
+namespace SS_WEB.Commands.FileReader.Interfaces;
 
 public interface IGetFileReaderCommand
 {

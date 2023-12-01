@@ -2,27 +2,29 @@ using MenuItem;
 using Provider;
 using Services;
 using Services.Base;
-using SS_Web.Actions;
-using SS_Web.Actions.@base;
-using SS_Web.Responses.CourseResponses;
-using SS_Web.Responses.FibonacciNumbersResponses;
-using SS_Web.Responses.FileReaderResponses;
-using SS_Web.Responses.GradeResponses;
-using SS_Web.Responses.StudentResponses;
-using SS_Web.Responses.TeacherResponses;
-using SS_Web.Responses.WebsiteSaveResponses;
-using SS_Web.Validators.Course;
-using SS_Web.Validators.Course.Interfaces;
-using SS_Web.Validators.Grade;
-using SS_Web.Validators.Grade.Interfaces;
-using SS_Web.Validators.Student;
-using SS_Web.Validators.Student.Interfaces;
-using SS_Web.Validators.Teacher;
-using SS_Web.Validators.Teacher.Interfaces;
-using SS_Web.Validators.WebsiteSave;
-using SS_Web.Validators.WebsiteSave.Interfaces;
+using Models.Responses.CourseResponses;
+using Models.Responses.FibonacciNumbersResponses;
+using Models.Responses.FileReaderResponses;
+using Models.Responses.GradeResponses;
+using Models.Responses.StudentResponses;
+using Models.Responses.TeacherResponses;
+using Models.Responses.WebsiteSaveResponses;
+using Models.Validators.Course;
+using Models.Validators.Course.Interfaces;
+using Models.Validators.Grade;
+using Models.Validators.Grade.Interfaces;
+using Models.Validators.Student;
+using Models.Validators.Student.Interfaces;
+using Models.Validators.Teacher;
+using Models.Validators.Teacher.Interfaces;
+using Models.Validators.WebsiteSave;
+using Models.Validators.WebsiteSave.Interfaces;
+using Models.Requests.Course;
+using SS_WEB.Commands.Course.Interfaces;
+using SS_WEB.Commands.Course;
+using MassTransit;
 
-namespace SS_Web
+namespace Models
 {
     public class Program
     {
@@ -37,23 +39,12 @@ namespace SS_Web
             builder.Services.AddScoped<IInputStringService, WebInputStringService>();
             builder.Services.AddTransient<IOutputService, WebOutputService>();
             builder.Services.AddTransient<IInputNumberService, WebInputService>();
-            builder.Services.AddTransient<IFibonacciNumbersActions, FibonacciNumbersActions>();
-            builder.Services.AddTransient<IFileReaderActions, FileReaderActions>();
-            builder.Services.AddTransient<FibonacciNumbers>();
-            builder.Services.AddTransient<CreateFibonacciNumbersResponse>();
-            builder.Services.AddTransient<FileReader>();
             builder.Services.AddTransient<IInputPathService, WebInputPathService>();
-            builder.Services.AddTransient<GetFileReaderResponse>();
+
+            builder.Services.AddTransient<FibonacciNumbers>();
+            builder.Services.AddTransient<FileReader>();
             builder.Services.AddTransient<ICreateWebsiteSaveRequestValidator, CreateWebsiteSaveRequestValidator>();
-            builder.Services.AddTransient<IWebsiteSaveActions, WebsiteSaveActions>();
             builder.Services.AddTransient<WebsiteSave>();
-            builder.Services.AddTransient<CreateWebsiteSaveResponse>();
-
-
-            builder.Services.AddTransient<ICourseActions, CourseActions>();
-            builder.Services.AddTransient<IStudentActions, StudentActions>();
-            builder.Services.AddTransient<ITeacherActions, TeacherActions>();
-            builder.Services.AddTransient<IGradeActions, GradeActions>();
 
             builder.Services.AddTransient<CourseRepository>();
             builder.Services.AddTransient<StudentRepository>();
@@ -65,10 +56,57 @@ namespace SS_Web
             builder.Services.AddTransient<ICreateStudentRequestValidator, CreateStudentRequestValidator>();
             builder.Services.AddTransient<ICreateTeacherRequestValidator, CreateTeacherRequestValidator>();
 
+            builder.Services.AddTransient<ICreateCourseRequestValidator, CreateCourseRequestValidator>();
+            builder.Services.AddTransient<ICreateGradeRequestValidator, CreateGradeRequestValidator>();
+            builder.Services.AddTransient<ICreateStudentRequestValidator, CreateStudentRequestValidator>();
+            builder.Services.AddTransient<ICreateTeacherRequestValidator, CreateTeacherRequestValidator>();
+
+            builder.Services.AddTransient<ICreateCourseRequestValidator, CreateCourseRequestValidator>();
+            builder.Services.AddTransient<ICreateGradeRequestValidator, CreateGradeRequestValidator>();
+            builder.Services.AddTransient<ICreateStudentRequestValidator, CreateStudentRequestValidator>();
+            builder.Services.AddTransient<ICreateTeacherRequestValidator, CreateTeacherRequestValidator>();
+
+            builder.Services.AddTransient<GetAllCourseResponse>();
+            builder.Services.AddTransient<GetCourseResponse>();
             builder.Services.AddTransient<CreateCourseResponse>();
-            builder.Services.AddTransient<CreateStudentResponse>();
-            builder.Services.AddTransient<CreateWebsiteSaveRequestResponse>();
-            builder.Services.AddTransient<CreateGradeResponse>();
+            builder.Services.AddTransient<DeleteCourseResponse>();
+            builder.Services.AddTransient<EditCourseResponse>();
+
+            builder.Services.AddTransient<GetCourseRequest>();
+            builder.Services.AddTransient<CreateCourseRequest>();
+            builder.Services.AddTransient<DeleteCourseRequest>();
+            builder.Services.AddTransient<EditCourseRequest>();
+
+
+            builder.Services.AddTransient<IGetCourseRequestValidator, GetCourseRequestValidator>();
+            builder.Services.AddTransient<ICreateCourseRequestValidator, CreateCourseRequestValidator>();
+            builder.Services.AddTransient<IDeleteCourseRequestValidator, DeleteCourseRequestValidator>();
+            builder.Services.AddTransient<IEditCourseRequestValidator, EditCourseRequestValidator>();
+
+            builder.Services.AddTransient<IGetAllCourseCommand, GetAllCourseCommand>();
+            builder.Services.AddTransient<IGetCourseCommand, GetCourseCommand>();
+            builder.Services.AddTransient<ICreateCourseCommand, CreateCourseCommand>();
+            builder.Services.AddTransient<IDeleteCourseCommand, DeleteCourseCommand>();
+            builder.Services.AddTransient<IEditCourseCommand, EditCourseCommand>();
+
+            try
+            {
+                builder.Services.AddMassTransit(x =>
+                {
+                    x.AddConsumers(typeof(Program).Assembly);
+
+                    x.UsingRabbitMq((context, cfg) =>
+                    {
+                        cfg.Host("localhost");
+                        cfg.ConfigureEndpoints(context);
+                    });
+                });
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("Failed to connect to rabbitmq");
+            }
 
             var app = builder.Build();
 

@@ -1,11 +1,11 @@
 ﻿using DbModels;
 using Provider;
-using SS_Web.Commands.Student.Interfaces;
-using SS_Web.Requests.Student;
-using SS_Web.Responses.StudentResponses;
-using SS_Web.Validators.Student.Interfaces;
+using SS_WEB.Commands.Student.Interfaces;
+using Models.Requests.Student;
+using Models.Responses.StudentResponses;
+using Models.Validators.Student.Interfaces;
 
-namespace SS_Web.Commands.Student;
+namespace SS_WEB.Commands.Student;
 
 public class EditStudentCommand : IEditStudentCommand
 {

@@ -1,7 +1,7 @@
-﻿using SS_Web.Requests.Teacher;
-using SS_Web.Responses.TeacherResponses;
+﻿using Models.Requests.Teacher;
+using Models.Responses.TeacherResponses;
 
-namespace SS_Web.Commands.Teacher.Interfaces;
+namespace SS_WEB.Commands.Teacher.Interfaces;
 
 public interface IDeleteTeacherCommand
 {

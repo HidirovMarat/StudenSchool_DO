@@ -1,7 +1,7 @@
-﻿using SS_Web.Requests.Student;
-using SS_Web.Responses.StudentResponses;
+﻿using Models.Requests.Student;
+using Models.Responses.StudentResponses;
 
-namespace SS_Web.Commands.Student.Interfaces;
+namespace SS_WEB.Commands.Student.Interfaces;
 
 public interface ICreateStudentCommand
 {

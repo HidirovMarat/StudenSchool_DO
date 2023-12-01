@@ -1,11 +1,9 @@
-﻿using Azure.Core;
-using Provider;
-using SS_Web.Commands.Course.Interfaces;
-using SS_Web.Entitys;
-using SS_Web.Responses.CourseResponses;
-using SS_Web.Validators.Course.Interfaces;
+﻿using Provider;
+using SS_WEB.Commands.Course.Interfaces;
+using Models.Entitys;
+using Models.Responses.CourseResponses;
 
-namespace SS_Web.Commands.Course;
+namespace SS_WEB.Commands.Course;
 
 public class GetAllCourseCommand : IGetAllCourseCommand
 {

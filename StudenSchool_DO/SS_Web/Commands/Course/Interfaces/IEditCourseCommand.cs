@@ -1,8 +1,7 @@
-﻿using SS_Web.Entitys;
-using SS_Web.Requests.Course;
-using SS_Web.Responses.CourseResponses;
+﻿using Models.Requests.Course;
+using Models.Responses.CourseResponses;
 
-namespace SS_Web.Commands.Course.Interfaces;
+namespace SS_WEB.Commands.Course.Interfaces;
 
 public interface IEditCourseCommand
 {

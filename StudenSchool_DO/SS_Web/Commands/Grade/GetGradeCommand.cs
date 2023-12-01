@@ -1,10 +1,10 @@
 ﻿using Provider;
-using SS_Web.Commands.Grade.Interfaces;
-using SS_Web.Requests.Grade;
-using SS_Web.Responses.GradeResponses;
-using SS_Web.Validators.Grade.Interfaces;
+using SS_WEB.Commands.Grade.Interfaces;
+using Models.Requests.Grade;
+using Models.Responses.GradeResponses;
+using Models.Validators.Grade.Interfaces;
 
-namespace SS_Web.Commands.Grade;
+namespace SS_WEB.Commands.Grade;
 
 public class GetGradeCommand : IGetGradeCommand
 {

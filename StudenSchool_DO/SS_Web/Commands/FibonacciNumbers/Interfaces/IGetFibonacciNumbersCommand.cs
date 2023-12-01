@@ -1,7 +1,7 @@
-﻿using SS_Web.Requests.FibonacciNumbers;
-using SS_Web.Responses.FibonacciNumbersResponses;
+﻿using Models.Requests.FibonacciNumbers;
+using Models.Responses.FibonacciNumbersResponses;
 
-namespace SS_Web.Commands.FibonacciNumbers.Interfaces;
+namespace SS_WEB.Commands.FibonacciNumbers.Interfaces;
 
 public interface IGetFibonacciNumbersCommand
 {

@@ -1,11 +1,11 @@
 ﻿using Services;
-using SS_Web.Commands.FibonacciNumbers.Interfaces;
-using SS_Web.Requests.FibonacciNumbers;
-using SS_Web.Responses.FibonacciNumbersResponses;
-using SS_Web.Validators.FibonacciNumbers.Interfaces;
+using SS_WEB.Commands.FibonacciNumbers.Interfaces;
+using Models.Requests.FibonacciNumbers;
+using Models.Responses.FibonacciNumbersResponses;
+using Models.Validators.FibonacciNumbers.Interfaces;
 using MenuItem;
 
-namespace SS_Web.Commands.FibonacciNumbers;
+namespace SS_WEB.Commands.FibonacciNumbers;
 
 public class GetFibonacciNumbersCommand : IGetFibonacciNumbersCommand
 {
@@ -31,7 +31,7 @@ public class GetFibonacciNumbersCommand : IGetFibonacciNumbersCommand
             return _response;
         }
 
-        EnterDataForInputString(key.ToString());
+        EnterDataForInputString(request.Number.ToString());
 
         _fibonacciNumbers.Operate();
 

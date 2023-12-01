@@ -1,12 +1,11 @@
 ﻿using MenuItem;
 using Services;
-using SS_Web.Commands.FileReader.Interfaces;
-using SS_Web.Requests.FileReader;
-using SS_Web.Responses.FileReaderResponses;
-using SS_Web.Validators.FileReader.Interfaces;
-using System.IO;
+using SS_WEB.Commands.FileReader.Interfaces;
+using Models.Requests.FileReader;
+using Models.Responses.FileReaderResponses;
+using Models.Validators.FileReader.Interfaces;
 
-namespace SS_Web.Commands.FileReader;
+namespace SS_WEB.Commands.FileReader;
 
 public class GetFileReaderCommand : IGetFileReaderCommand
 {

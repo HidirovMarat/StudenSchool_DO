@@ -1,7 +1,7 @@
-﻿using SS_Web.Requests.Grade;
-using SS_Web.Responses.GradeResponses;
+﻿using Models.Requests.Grade;
+using Models.Responses.GradeResponses;
 
-namespace SS_Web.Commands.Grade.Interfaces;
+namespace SS_WEB.Commands.Grade.Interfaces;
 
 public interface IGetGradeCommand
 {

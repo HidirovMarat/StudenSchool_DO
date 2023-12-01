@@ -1,7 +1,7 @@
-﻿using SS_Web.Requests.WebsiteSave;
-using SS_Web.Responses.WebsiteSaveResponses;
+﻿using Models.Requests.WebsiteSave;
+using Models.Responses.WebsiteSaveResponses;
 
-namespace SS_Web.Commands.WebsiteSave.Interfaces;
+namespace SS_WEB.Commands.WebsiteSave.Interfaces;
 
 public interface ICreateWebsiteSaveCommand
 {

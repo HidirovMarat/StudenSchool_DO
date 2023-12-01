@@ -1,11 +1,10 @@
-﻿using Azure;
-using Provider;
-using SS_Web.Commands.Course.Interfaces;
-using SS_Web.Requests.Course;
-using SS_Web.Responses.CourseResponses;
-using SS_Web.Validators.Course.Interfaces;
+﻿using Provider;
+using SS_WEB.Commands.Course.Interfaces;
+using Models.Requests.Course;
+using Models.Responses.CourseResponses;
+using Models.Validators.Course.Interfaces;
 
-namespace SS_Web.Commands.Course;
+namespace SS_WEB.Commands.Course;
 
 public class DeleteCourseCommand : IDeleteCourseCommand
 {
@@ -38,6 +37,8 @@ public class DeleteCourseCommand : IDeleteCourseCommand
         }
 
         _repository.Delete(request.Id);
+
+        _response.Id = request.Id;
 
         return _response;
     }

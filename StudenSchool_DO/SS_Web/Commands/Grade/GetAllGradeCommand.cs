@@ -1,10 +1,9 @@
 ﻿using Provider;
-using SS_Web.Commands.Grade.Interfaces;
-using SS_Web.Entitys;
-using SS_Web.Responses.GradeResponses;
-using SS_Web.Validators.Grade.Interfaces;
+using SS_WEB.Commands.Grade.Interfaces;
+using Models.Entitys;
+using Models.Responses.GradeResponses;
 
-namespace SS_Web.Commands.Grade;
+namespace SS_WEB.Commands.Grade;
 
 public class GetAllGradeCommand : IGetAllGradeCommand
 {
